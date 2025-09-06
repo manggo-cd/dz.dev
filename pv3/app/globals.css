@@ -15,7 +15,8 @@ body {
   font-weight: 400;
   letter-spacing: -0.08em;
   line-height: 1.5;
-  padding: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 /* Typography classes */
@@ -46,4 +47,46 @@ body {
 
 .font-extrabold {
   font-weight: 800;
+}
+
+/* Star animation */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotating-star {
+  animation: rotate 60s linear infinite;
+}
+
+/* Text inversion effect */
+.star-container {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+}
+
+.background-text {
+  position: relative;
+  z-index: 0;
+  color: #F8F8F8;
+}
+
+.star-text {
+  position: relative;
+  z-index: 2;
+  color: #F8F8F8;
+}
+
+.star-svg {
+  position: absolute;
+  top: -130%;
+  left: 8%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  mix-blend-mode: difference;
 }
