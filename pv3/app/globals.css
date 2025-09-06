@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #070707;
+  color: #F8F8F8;
+  font-family: 'Geist Mono', monospace;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: -0.08em;
+  line-height: 1.5;
+}
+
+/* Typography classes */
+.subheadings {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+}
+
+.heading-1 {
+  font-size: 6rem;
+  font-weight: 700;
+  letter-spacing: -0.08em;
+}
+
+.title {
+  color: #0046A2;
+  font-family: var(--font-gaseok-one), cursive;
+  font-size: 16rem;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+/* Font weight utilities */
+.font-bold {
+  font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
