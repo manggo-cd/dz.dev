@@ -71,7 +71,6 @@ body {
 .star-container {
   position: relative;
   display: inline-block;
-  /* isolation: isolate; */
 }
 
 .background-text {
@@ -88,11 +87,9 @@ body {
 
 .star-svg {
   position: absolute;
-  /* top: -115%;
-          left: 12.5%; */
-  /* transform: translate(-50%, -50%); */
   z-index: 1;
   mix-blend-mode: difference;
+  scale: 0.9;
 }
 .noise-overlay {
   position: fixed;

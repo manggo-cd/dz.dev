@@ -1,6 +1,6 @@
 import React from "react";
 
-interface Project {
+export interface Project {
   name: string;
   description: string;
   year: string;
