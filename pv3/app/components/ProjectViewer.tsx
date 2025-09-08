@@ -22,7 +22,7 @@ const ProjectViewer = ({ project }: ProjectProps) => {
 
       <div className="h-20">
         {project.link === "na" ? (
-          <div className="subheadings text-center">WORK IN PROGRESS</div>
+          <p className="subheadings text-center">REPO NOT AVAILABLE :(</p>
         ) : (
           <a href={project.link} target="_blank" className="hover:opacity-70">
             <div className="flex flex-row justify-between h-fit">

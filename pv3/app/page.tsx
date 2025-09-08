@@ -1,8 +1,11 @@
 "use client";
 import ProjectViewer from "./components/ProjectViewer";
 import SubjectHeader from "./components/SubjectHeader";
+import ExperienceCard from "./components/ExperienceCard";
 import { projects } from "./data/Projects";
+import { experiences } from "./data/Experiences";
 import { useState } from "react";
+import MusicShowcase from "./components/MusicShowcase";
 
 export default function Home() {
   // Generate 9-pointed star points with golden ratio (38.2%)
@@ -72,8 +75,13 @@ export default function Home() {
           <div className="grid grid-cols-3 gap-8 w-7xl min-w-4xl">
             <div className="col-span-1">
               <SubjectHeader title="EXPERIENCE" />
+              <div id="experience-list">
+                {experiences.map((e, index) => (
+                  <ExperienceCard key={index} experience={e} />
+                ))}
+              </div>
               <SubjectHeader title="PROJECTS" />
-              <div id="project-selector" className="text-center">
+              <div id="project-selector" className="text-center px-5">
                 {projects.map((project, index) => (
                   <span key={index}>
                     <span
@@ -144,6 +152,7 @@ export default function Home() {
                 </div>
                 <div className="mt-15">UPDATED 09.04.2025</div>
               </div>
+              <MusicShowcase />
             </div>
             <div className="col-span-1">
               {/* Column 3 content */}

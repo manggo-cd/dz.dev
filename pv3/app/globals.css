@@ -2,6 +2,7 @@
 
 @theme {
   --color-off: #F8F8F8;
+  --color-highlight-red: #CC0000;
 }
 /* Reset and base styles */
 /* * {
