@@ -39,7 +39,7 @@ body {
 .title {
   color: #0046A2;
   font-family: var(--font-gaseok-one), cursive;
-  font-size: 16rem;
+  font-size: 1600%;
   font-weight: 400;
   letter-spacing: -0.04em;
 }
@@ -71,7 +71,7 @@ body {
 .star-container {
   position: relative;
   display: inline-block;
-  isolation: isolate;
+  /* isolation: isolate; */
 }
 
 .background-text {
@@ -82,14 +82,14 @@ body {
 
 .star-text {
   position: relative;
-  z-index: 2;
+  z-index: 10;
   color: #F8F8F8;
 }
 
 .star-svg {
   position: absolute;
-  top: -130%;
-  left: 8%;
+  /* top: -115%;
+          left: 12.5%; */
   /* transform: translate(-50%, -50%); */
   z-index: 1;
   mix-blend-mode: difference;

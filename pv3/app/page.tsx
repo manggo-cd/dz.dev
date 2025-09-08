@@ -41,7 +41,7 @@ export default function Home() {
       {/* First section - takes up visible page with centered content */}
       <section className="h-screen flex items-center justify-center">
         <div className="px-8 text-center">
-          <div className="star-container">
+          <div className="star-container h-inherit">
             {/* Background text - 3 columns */}
             <div className="background-text grid grid-cols-3 gap-8 -mb-24 font-extrabold text-sm">
               <div className="col-span-1 text-left">FULLSTACK DEVELOPER</div>
@@ -57,16 +57,17 @@ export default function Home() {
             </div>
 
             {/* Star behind everything */}
-            <svg
+            {/* <svg
               className="star-svg rotating-star"
               width="110vh"
               height="110vh"
               viewBox="0 0 200 200"
             >
               <polygon points={generateStarPoints()} fill="#F8F8F8" />
-            </svg>
+            </svg> */}
           </div>
         </div>
+        <img src="./assets/main_star.svg" className="star-svg rotating-star" />
       </section>
 
       {/* Second section - 3 columns, 1 row */}
