@@ -35,6 +35,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${gasoekOne.variable} antialiased`}
       >
         {children}
+        <div className="noise-overlay"></div>
+
+        <svg>
+          <filter id="noise">
+            <feTurbulence type="turbulence" baseFrequency={0.65}/>
+          </filter>
+        </svg>
       </body>
     </html>
   );
