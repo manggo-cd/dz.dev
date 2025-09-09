@@ -2,7 +2,7 @@ import React from "react";
 
 const SectionOne = () => {
   return (
-    <section className="h-screen flex items-center justify-center mb-10">
+    <section className="relative h-screen flex items-center justify-center mb-10 overflow-hidden">
       <div className="px-8 text-center sm:mt-0 -mt-10">
         <div className="star-container h-inherit">
           {/* Background text - 3 columns */}
@@ -20,7 +20,7 @@ const SectionOne = () => {
 
           {/* Main text - BERNARD */}
           <div className="star-text">
-            <h1 className="title xl:text-[16rem] lg:text-[12rem] md:text-[8rem] sm:text-[6rem] text-[4rem]">
+            <h1 className="title xl:text-[16rem] lg:text-[12rem] md:text-[8rem] sm:text-[6rem] text-[3.5rem]">
               BERNARD
             </h1>
           </div>
