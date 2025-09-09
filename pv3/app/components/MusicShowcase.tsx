@@ -2,7 +2,7 @@ import React from "react";
 
 const MusicShowcase = () => {
   return (
-    <div className="flex flex-row mt-8 gap-2">
+    <div className="flex flex-row mt-10 gap-2 lg:mb-0 mb-25">
       <div className="flex-1 flex justify-center items-center h-inherit w-inherit">
         <img src="./assets/mdi_disc.svg" className="w-full object-cover" />
       </div>

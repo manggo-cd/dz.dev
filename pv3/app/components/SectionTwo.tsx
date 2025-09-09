@@ -20,11 +20,11 @@ const SectionTwo = () => {
 
   return (
     <section className="py-8 flex justify-center">
-      <div className="grid lg:grid-cols-3 grid-cols-1 gap-8 lg:w-7xl md:w-100 lg:min-w-4xl sm:w-fit w-70">
+      <div className="grid lg:grid-cols-3 grid-cols-1 gap-10 lg:w-7xl md:w-100 lg:min-w-4xl sm:w-fit w-70">
         <div className="col-span-1">
           <AboutSection />
 
-          <div className="grid grid-cols-3 my-15">
+          <div className="grid grid-cols-3 lg:my-15 my-10">
             <div className="flex justify-center">
               <img src="/assets/small_star.svg" />
             </div>
@@ -37,12 +37,17 @@ const SectionTwo = () => {
           </div>
           <ContactSection />
           <HobbySection />
+          <div className="lg:hidden">
+            <MusicShowcase />
+          </div>
         </div>
         <div className="col-span-1">
           <ExperienceSection />
           <ProjectSelector setProject={handleChange} />
           <ProjectViewer project={curProject} />
-          <MusicShowcase />
+          <div className="hidden lg:block">
+            <MusicShowcase />
+          </div>
         </div>
         <div className="col-span-1">
           <TechStack />
