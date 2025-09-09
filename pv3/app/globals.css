@@ -11,27 +11,59 @@
   box-sizing: border-box;
 } */
 
+@media (width <=40rem) {
+  body {
+    font-size: 0.875rem;
+    width: screen;
+
+  }
+
+  .subheadings {
+    font-size: 1rem;
+  }
+
+  .heading-1 {
+    font-size: 3rem;
+  }
+
+
+}
+
+@media (width >=40rem) {
+  body {
+    font-size: 1rem;
+  }
+
+  .subheadings {
+    font-size: 1.5rem;
+  }
+
+
+  .heading-1 {
+    font-size: 6rem;
+  }
+}
 body {
   background-color: #070707;
   color: #F8F8F8;
   font-family: 'Geist Mono', monospace;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   font-weight: 400;
   letter-spacing: -0.08em;
   line-height: 1.5;
   padding-left: 2rem;
   padding-right: 2rem;
+  overflow-x: hidden;
 }
 
 /* Typography classes */
 .subheadings {
-  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.08em;
 }
 
 .heading-1 {
-  font-size: 6rem;
+
   font-weight: 700;
   letter-spacing: -0.08em;
 }
@@ -39,10 +71,10 @@ body {
 .title {
   color: #0046A2;
   font-family: var(--font-gaseok-one), cursive;
-  font-size: 1600%;
   font-weight: 400;
   letter-spacing: -0.04em;
 }
+
 
 /* Font weight utilities */
 .font-bold {
@@ -121,6 +153,7 @@ body {
 
 .social-link {
   text-align: right;
+  font-weight: 700;
   cursor: pointer;
 }
 

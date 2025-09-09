@@ -20,10 +20,9 @@ const SectionTwo = () => {
 
   return (
     <section className="py-8 flex justify-center">
-      <div className="grid grid-cols-3 gap-8 w-7xl min-w-4xl">
+      <div className="grid lg:grid-cols-3 grid-cols-1 gap-8 lg:w-7xl md:w-100 lg:min-w-4xl sm:w-fit w-70">
         <div className="col-span-1">
-          <ExperienceSection />
-          <ProjectSelector setProject={handleChange} />
+          <AboutSection />
 
           <div className="grid grid-cols-3 my-15">
             <div className="flex justify-center">
@@ -40,8 +39,9 @@ const SectionTwo = () => {
           <HobbySection />
         </div>
         <div className="col-span-1">
+          <ExperienceSection />
+          <ProjectSelector setProject={handleChange} />
           <ProjectViewer project={curProject} />
-          <AboutSection />
           <MusicShowcase />
         </div>
         <div className="col-span-1">

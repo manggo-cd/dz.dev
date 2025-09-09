@@ -13,8 +13,8 @@ interface ProjectProps {
 
 const ProjectViewer = ({ project }: ProjectProps) => {
   return (
-    <div className="flex flex-col gap-y-5 mb-5">
-      <div className="border border-off p-5 h-70">
+    <div className="flex flex-col gap-y-5 lg:mb-5 mb-25">
+      <div className="border border-off p-5 lg:h-70 h-fit">
         <p className="subheadings">PROJECT: {project.name.toUpperCase()}</p>
         <hr className="my-5 border-off" />
         <p>{project.description.toUpperCase()}</p>

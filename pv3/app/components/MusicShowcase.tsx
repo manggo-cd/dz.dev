@@ -2,12 +2,9 @@ import React from "react";
 
 const MusicShowcase = () => {
   return (
-    <div className="flex flex-row mt-8">
+    <div className="flex flex-row mt-8 gap-2">
       <div className="flex-1 flex justify-center items-center h-inherit w-inherit">
-        <img
-          src="./assets/mdi_disc.svg"
-          className="h-full w-full object-cover"
-        />
+        <img src="./assets/mdi_disc.svg" className="w-full object-cover" />
       </div>
       <div className="text-right flex-2 ">
         <span className="subheadings">CURRENT ROTATION</span> <br></br>

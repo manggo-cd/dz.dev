@@ -20,7 +20,7 @@ const ProjectSelector = ({ setProject }: ProjectCallback) => {
   return (
     <div>
       <SubjectHeader title="PROJECTS" />
-      <div id="project-selector" className="text-center px-5">
+      <div id="project-selector" className="text-center px-5 mb-10">
         {projects.map((project, index) => (
           <span key={index}>
             <span
