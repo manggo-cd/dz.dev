@@ -1,9 +1,23 @@
 export const experiences = [
   {
-    title: "java developer co-op",
+    title: "backend engineer intern",
     location: "vancouver",
-    company: "global relay",
+    company: "suogogo technologies",
+    start: "aug2025",
+    end: "present",
+  },
+  {
+    title: "research assistant",
+    location: "vancouver",
+    company: "ubc visual cognition lab",
     start: "sept2025",
     end: "present",
+  },
+  {
+    title: "software developer intern",
+    location: "vancouver",
+    company: "second savour - startup",
+    start: "sept2024",
+    end: "apr2025",
   },
 ];

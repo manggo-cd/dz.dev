@@ -6,17 +6,13 @@ const TechStack = () => {
     <div>
       <SubjectHeader title="TECH STACK" />
       <p className="text-center my-5">
-        <b>FRONTEND</b> <br></br>HTML CSS REACT NEXTJS TAILWIND<br></br>{" "}
-        <b>BACKEND</b> <br></br>
-        SPRINGBOOT EXPRESSJS<br></br> <b>DATABASES</b>
-        <br></br> MYSQL MONGODB SQLITE <br></br>
-        <b>DEVOPS</b> <br></br>AND CLOUD DOCKER AWS<br></br> <b>AI/ML</b>
-        <br></br> PYTORCH TENSORFLOW <br></br>
-        <b>TOOLS</b>
-        <br></br> VSCODE VISUALSTUDIO INTELLIJ CURSOR POSTMAN<br></br>{" "}
-        <b>GENERAL LANGUAGE KNOWLEDGE</b>
-        <br></br>
-        JAVA C# C++ C PYTHON R JAVASCRIPT TYPESCRIPT
+        <b>LANGUAGES</b> <br></br>JAVASCRIPT JAVA TYPESCRIPT PYTHON C/C++ SQL HTML/CSS R<br></br>{" "}
+        <b>FRAMEWORKS & LIBRARIES</b> <br></br>
+        REACT (NATIVE) SPRINGBOOT EXPRESSJS NEXTJS NODEJS ANGULAR JUNIT<br></br> <b>DATABASES</b>
+        <br></br> POSTGRESQL MONGODB ORACLEDB <br></br>
+        <b>DEVELOPER TOOLS</b> <br></br>AWS LINUX CURSOR DOCKER VERCEL POSTMAN FIGMA<br></br>
+        <b>CLOUD & DEVOPS</b>
+        <br></br> AWS AZURE DEVOPS DOCKER <br></br>
       </p>
     </div>
   );

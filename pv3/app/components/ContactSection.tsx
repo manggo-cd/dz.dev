@@ -12,14 +12,14 @@ const ContactSection = () => {
 
       <div className="flex lg:flex-col flex-row gap-10 lg:gap-0 lg:justify-end justify-center">
         <a
-          href="https://www.linkedin.com/in/bernardliu217/"
+          href="https://www.linkedin.com/in/dzhou05/"
           target="_blank"
           className="social-link"
         >
           LINKEDIN
         </a>
         <a
-          href="https://github.com/bliu217"
+          href="https://github.com/manggo-cd"
           target="_blank"
           className="social-link"
         >

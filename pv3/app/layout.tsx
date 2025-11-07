@@ -20,7 +20,7 @@ const gasoekOne = Gasoek_One({
 });
 
 export const metadata: Metadata = {
-  title: "Bernard's Portfolio",
+  title: "Daniel's Portfolio",
   description: "v2 2025",
 };
 

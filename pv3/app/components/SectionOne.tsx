@@ -8,7 +8,7 @@ const SectionOne = () => {
           {/* Background text - 3 columns */}
           <div className="background-text grid grid-cols-3 gap-8 lg:-mb-24 -mb-4 font-extrabold md:text-sm text-[0.875rem]">
             <div className="col-span-1 text-left flex flex-col justify-end">
-              FULLSTACK DEVELOPER
+              SOFTWARE DEVELOPER
             </div>
             <div className="col-span-1 flex flex-col justify-end">
               VANCOUVER BC
@@ -18,10 +18,10 @@ const SectionOne = () => {
             </div>
           </div>
 
-          {/* Main text - BERNARD */}
+          {/* Main text - DANIEL */}
           <div className="star-text">
             <h1 className="title xl:text-[16rem] lg:text-[12rem] md:text-[8rem] sm:text-[6rem] text-[3.5rem]">
-              BERNARD
+              DANIEL
             </h1>
           </div>
         </div>

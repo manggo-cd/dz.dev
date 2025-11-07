@@ -8,10 +8,10 @@ const MusicShowcase = () => {
       </div>
       <div className="text-right flex-2 ">
         <span className="subheadings">CURRENT ROTATION</span> <br></br>
-        SWAP IT OUT - JUSTIN BEIBER <br></br>
-        HOPE YOU DO - CHRIS BROWN <br></br>
-        SPARKS VISION - LUCKI, F1LTHY <br></br>
-        PIPE DOWN - DRAKE
+        I. Pink Toes - Childish Gambino <br></br>
+        Relax and Run - Blood Orange <br></br>
+        Gravity - John Mayer <br></br>
+        East Liberty - PARTYNEXTDOOR
       </div>
     </div>
   );
