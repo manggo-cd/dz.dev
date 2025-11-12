@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Gasoek_One } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -42,6 +43,8 @@ export default function RootLayout({
             <feTurbulence type="turbulence" baseFrequency={0.65}/>
           </filter>
         </svg>
+        
+        <Analytics />
       </body>
     </html>
   );
