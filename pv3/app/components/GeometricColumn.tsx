@@ -4,55 +4,76 @@ import React from "react";
 const GeometricColumn = () => {
   return (
     <div className="flex flex-col items-center py-8 gap-14">
-      {/* Simple Circle */}
+      {/* Git Commit Node */}
       <svg width="80" height="80" viewBox="0 0 100 100" className="opacity-70 hover:opacity-100 transition-all duration-500">
         <circle 
           cx="50" 
           cy="50" 
-          r="35" 
+          r="12" 
           fill="none" 
           stroke="currentColor" 
-          strokeWidth="1.5"
+          strokeWidth="2"
         />
         <circle 
           cx="50" 
           cy="50" 
-          r="20" 
-          fill="none" 
-          stroke="currentColor" 
-          strokeWidth="1"
-          opacity="0.4"
+          r="5" 
+          fill="currentColor"
         />
+        <line x1="50" y1="10" x2="50" y2="38" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="50" y1="62" x2="50" y2="90" stroke="currentColor" strokeWidth="1.5" />
       </svg>
 
-      {/* Simple Diamond */}
-      <svg width="75" height="75" viewBox="0 0 100 100" className="opacity-70 hover:opacity-100 transition-all duration-500">
-        <polygon
-          points="50,10 85,50 50,90 15,50"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
+      {/* Git Branch */}
+      <svg width="80" height="90" viewBox="0 0 100 100" className="opacity-70 hover:opacity-100 transition-all duration-500">
+        <line x1="30" y1="20" x2="30" y2="45" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="30" cy="50" r="8" fill="none" stroke="currentColor" strokeWidth="2" />
+        <circle cx="30" cy="50" r="3" fill="currentColor" />
+        
+        <path d="M 30 58 Q 35 65, 50 65 L 70 65" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="70" cy="65" r="8" fill="none" stroke="currentColor" strokeWidth="2" />
+        <circle cx="70" cy="65" r="3" fill="currentColor" />
+        
+        <line x1="30" y1="58" x2="30" y2="80" stroke="currentColor" strokeWidth="1.5" />
       </svg>
 
-      {/* Simple Star */}
-      <svg width="75" height="75" viewBox="0 0 100 100" className="opacity-70 hover:opacity-100 transition-all duration-500">
-        <path
-          d="M 50,15 L 58,42 L 85,42 L 63,58 L 71,85 L 50,69 L 29,85 L 37,58 L 15,42 L 42,42 Z"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
+      {/* Git Merge */}
+      <svg width="90" height="90" viewBox="0 0 100 100" className="opacity-70 hover:opacity-100 transition-all duration-500">
+        <line x1="35" y1="20" x2="35" y2="35" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="35" cy="40" r="8" fill="none" stroke="currentColor" strokeWidth="2" />
+        <circle cx="35" cy="40" r="3" fill="currentColor" />
+        
+        <line x1="65" y1="20" x2="65" y2="35" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="65" cy="40" r="8" fill="none" stroke="currentColor" strokeWidth="2" />
+        <circle cx="65" cy="40" r="3" fill="currentColor" />
+        
+        <path d="M 35 48 Q 40 55, 50 60" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M 65 48 Q 60 55, 50 60" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        
+        <circle cx="50" cy="65" r="8" fill="none" stroke="currentColor" strokeWidth="2" />
+        <circle cx="50" cy="65" r="3" fill="currentColor" />
+        <line x1="50" y1="73" x2="50" y2="85" stroke="currentColor" strokeWidth="1.5" />
       </svg>
 
-      {/* Simple Hexagon */}
-      <svg width="80" height="85" viewBox="0 0 100 100" className="opacity-70 hover:opacity-100 transition-all duration-500">
-        <polygon
-          points="50,10 85,30 85,70 50,90 15,70 15,30"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-        />
+      {/* Git Network/Tree */}
+      <svg width="85" height="85" viewBox="0 0 100 100" className="opacity-70 hover:opacity-100 transition-all duration-500">
+        <circle cx="50" cy="25" r="8" fill="none" stroke="currentColor" strokeWidth="2" />
+        <circle cx="50" cy="25" r="3" fill="currentColor" />
+        
+        <line x1="50" y1="33" x2="35" y2="52" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="50" y1="33" x2="65" y2="52" stroke="currentColor" strokeWidth="1.5" />
+        
+        <circle cx="35" cy="60" r="7" fill="none" stroke="currentColor" strokeWidth="2" />
+        <circle cx="35" cy="60" r="3" fill="currentColor" />
+        
+        <circle cx="65" cy="60" r="7" fill="none" stroke="currentColor" strokeWidth="2" />
+        <circle cx="65" cy="60" r="3" fill="currentColor" />
+        
+        <line x1="35" y1="67" x2="50" y2="78" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="65" y1="67" x2="50" y2="78" stroke="currentColor" strokeWidth="1.5" />
+        
+        <circle cx="50" cy="85" r="7" fill="none" stroke="currentColor" strokeWidth="2" />
+        <circle cx="50" cy="85" r="3" fill="currentColor" />
       </svg>
     </div>
   );
