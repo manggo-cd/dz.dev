@@ -5,8 +5,8 @@ export interface Project {
   description: string;
   year: string;
   link: string;
-  demoLink?: string;
-  tech?: string[];
+  demoLink: string;
+  tech: string[];
 }
 
 interface ProjectProps {
@@ -21,7 +21,7 @@ const ProjectViewer = ({ project }: ProjectProps) => {
         <hr className="my-5 border-off" />
         <p>{project.description.toUpperCase()}</p>
         
-        {project.tech && project.tech.length > 0 && (
+        {project.tech.length > 0 && (
           <>
             <hr className="my-5 border-off" />
             <div className="flex flex-wrap gap-2">
@@ -58,7 +58,7 @@ const ProjectViewer = ({ project }: ProjectProps) => {
           </a>
         )}
         
-        {project.demoLink && (
+        {project.demoLink && project.demoLink !== "" && (
           <a href={project.demoLink} target="_blank" className="hover:opacity-70">
             <div className="flex flex-row justify-between h-20 border border-off p-3 items-center">
               <div className="subheadings flex-1">
