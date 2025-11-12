@@ -11,7 +11,7 @@ const MusicShowcase = () => {
         I. Pink Toes - Childish Gambino <br></br>
         Relax and Run - Blood Orange <br></br>
         Gravity - John Mayer <br></br>
-        East Liberty - PARTYNEXTDOOR
+        Race My Mind - Drake
       </div>
     </div>
   );
