@@ -81,11 +81,10 @@ const Terminal = ({ isOpen, onClose }: TerminalProps) => {
         "3rd Year Computer Science Student",
         "University of British Columbia",
         "",
-        "Passionate about scalable systems, clean architecture,",
-        "and building reliable APIs",
+        "Passionate about scalable systems, clean code, and reliable APIs",
         "",
         "Currently: Backend Engineer Intern @ Suogogo Technologies",
-        "Interests: Distributed systems, Quant finance, Basketball, Music production",
+        "Interests: Distributed systems, Quant finance, Basketball, Gym",
         "",
       ]);
     },
