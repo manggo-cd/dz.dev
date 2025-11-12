@@ -15,15 +15,21 @@ function SpikyBall() {
     const spikeLength = 1.6; // Shorter, less aggressive
     const spikeBaseRadius = 0.28; // Smaller base for gentler look
 
-    // Central sphere - more organic feel
+    // Central sphere - silver chrome with iridescence
     const sphereGeometry = new THREE.SphereGeometry(sphereRadius, 64, 64);
-    const sphereMaterial = new THREE.MeshStandardMaterial({
-      color: "#2d3e5c", // Deep indigo blue (original)
-      metalness: 0.7,
-      roughness: 0.4,  // More matte for organic feel
-      envMapIntensity: 0.9,
-      emissive: "#1a2233", // Subtle glow (original)
-      emissiveIntensity: 0.1,
+    const sphereMaterial = new THREE.MeshPhysicalMaterial({
+      color: "#c0c0c0", // Silver/chrome base
+      metalness: 1.0,   // Full metallic
+      roughness: 0.12,  // Very smooth for mirror shine
+      envMapIntensity: 3.0,
+      clearcoat: 1.0,   // Adds glossy layer
+      clearcoatRoughness: 0.08,
+      iridescence: 1.0, // Rainbow oil-slick effect
+      iridescenceIOR: 1.8,
+      iridescenceThicknessRange: [100, 800], // Creates color shifting
+      sheen: 0.5,       
+      sheenRoughness: 0.2,
+      sheenColor: new THREE.Color("#ffffff"),
     });
     const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
     sphere.castShadow = true;
@@ -51,13 +57,20 @@ function SpikyBall() {
         false            // Not open ended
       );
       
-      const spikeMaterial = new THREE.MeshStandardMaterial({
-        color: "#1e2940", // Darker indigo for spikes (original)
-        metalness: 0.75,
-        roughness: 0.35,  // More matte, less sharp
-        envMapIntensity: 1,
-        emissive: "#0f1820", // Subtle glow (original)
-        emissiveIntensity: 0.15,
+      const spikeMaterial = new THREE.MeshPhysicalMaterial({
+        color: "#b8b8b8", // Silver/chrome for spikes
+        metalness: 1.0,   // Full metallic
+        roughness: 0.08,  // Very smooth for maximum shine
+        envMapIntensity: 3.5,
+        clearcoat: 1.0,   // Glossy coating
+        clearcoatRoughness: 0.04,
+        iridescence: 0.95, // Strong rainbow oil-slick effect
+        iridescenceIOR: 2.0,
+        iridescenceThicknessRange: [200, 1000], // More dramatic color shift
+        sheen: 0.6,       
+        sheenRoughness: 0.1,
+        sheenColor: new THREE.Color("#ffffff"),
+        reflectivity: 1.0,
       });
       
       const cone = new THREE.Mesh(coneGeometry, spikeMaterial);
@@ -102,59 +115,68 @@ function SpikyBall() {
 const Star3D = () => {
   return (
     <div className="absolute inset-0 z-1 flex items-center justify-center">
-      <Canvas shadows gl={{ antialias: true, alpha: true }}>
+      <Canvas 
+        shadows 
+        gl={{ 
+          antialias: true, 
+          alpha: true,
+          toneMapping: THREE.ACESFilmicToneMapping, // Better color rendering
+          toneMappingExposure: 1.2,
+        }}
+      >
         <PerspectiveCamera makeDefault position={[0, 0, 9]} fov={45} />
         
         {/* Key light - main illumination from top-right */}
         <directionalLight
           position={[8, 8, 5]}
-          intensity={4}
+          intensity={5}
+          color="#ffffff"
           castShadow
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
         />
         
-        {/* Fill light from left - softer indigo */}
+        {/* Fill light from left - cool tone */}
         <directionalLight
           position={[-6, 3, 4]}
-          intensity={1.5}
-          color="#4a5f8f"
+          intensity={2}
+          color="#b0c4de"
         />
         
-        {/* Rim light from behind - creates edge highlights */}
+        {/* Rim light from behind - creates rainbow edge */}
         <directionalLight
           position={[0, -3, -8]}
-          intensity={2}
-          color="#5a7fb0"
+          intensity={2.5}
+          color="#c8d8ff"
         />
         
-        {/* Top light for highlights */}
+        {/* Top light for highlights - bright white */}
         <pointLight
           position={[0, 10, 0]}
-          intensity={1.5}
+          intensity={2}
           color="#ffffff"
         />
         
-        {/* Additional side lights for better visibility */}
+        {/* Additional side lights with color tints */}
         <pointLight
           position={[10, 0, 0]}
-          intensity={0.8}
-          color="#ffffff"
+          intensity={1.2}
+          color="#ffd0ff"
         />
         <pointLight
           position={[-10, 0, 0]}
-          intensity={0.8}
-          color="#ffffff"
+          intensity={1.2}
+          color="#d0f0ff"
         />
         
         {/* Ambient light for base illumination */}
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.6} />
         
         {/* Hemisphere light for natural lighting */}
         <hemisphereLight
-          color="#ffffff"
-          groundColor="#1a1a2e"
-          intensity={0.5}
+          color="#e0f0ff"
+          groundColor="#2a3a4e"
+          intensity={0.8}
         />
         
         <SpikyBall />
