@@ -10,6 +10,7 @@ import ContactSection from "./ContactSection";
 import HobbySection from "./HobbySection";
 import AboutSection from "./AboutSection";
 import TechStack from "./TechStack";
+import GeometricColumn from "./GeometricColumn";
 
 const SectionTwo = () => {
   const [curProject, setProject] = useState(projects[0]);
@@ -59,9 +60,7 @@ const SectionTwo = () => {
         </div>
         <div className="col-span-1" id="tech-stack">
           <TechStack />
-          <div className="flex justify-center my-15">
-            <img src="assets/big_star.svg" />
-          </div>
+          <GeometricColumn />
         </div>
       </div>
     </section>
