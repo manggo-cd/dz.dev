@@ -14,6 +14,8 @@ const Terminal = ({ isOpen, onClose }: TerminalProps) => {
     "",
   ]);
   const [secretUnlocked, setSecretUnlocked] = useState(false);
+  const [usedJokes, setUsedJokes] = useState<number[]>([]);
+  const [usedFortunes, setUsedFortunes] = useState<number[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const historyRef = useRef<HTMLDivElement>(null);
 
@@ -35,6 +37,13 @@ const Terminal = ({ isOpen, onClose }: TerminalProps) => {
     "A SQL query walks into a bar, walks up to two tables and asks...\n'Can I join you?'",
     "Why do Java developers wear glasses?\nBecause they can't C#!",
     "!false\n(It's funny because it's true)",
+    "What's a programmer's favorite hangout place?\nThe Foo Bar! 🍺",
+    "Why do Python programmers have low self-esteem?\nThey're constantly comparing themselves to C.",
+    "What do you call a developer who doesn't comment their code?\nA job creator! 📝",
+    "Why did the developer go broke?\nBecause they used up all their cache! 💸",
+    "What's the object-oriented way to become wealthy?\nInheritance. 💰",
+    "Why do programmers always mix up Halloween and Christmas?\nBecause Oct 31 == Dec 25! 🎃🎄",
+    "What did the router say to the doctor?\nIt hurts when IP! 🏥",
   ];
 
   const fortunes = [
@@ -43,7 +52,36 @@ const Terminal = ({ isOpen, onClose }: TerminalProps) => {
     "Code never lies, comments sometimes do.",
     "First, solve the problem. Then, write the code.",
     "Make it work, make it right, make it fast.",
+    "Any fool can write code that a computer can understand. Good programmers write code that humans can understand. - Martin Fowler",
+    "Programs must be written for people to read, and only incidentally for machines to execute. - Abelson & Sussman",
+    "Truth can only be found in one place: the code. - Robert C. Martin",
+    "Simplicity is prerequisite for reliability. - Edsger Dijkstra",
+    "If debugging is the process of removing bugs, then programming must be the process of putting them in. - Edsger Dijkstra",
+    "Code is like humor. When you have to explain it, it's bad. - Cory House",
+    "Walking on water and developing software from a specification are easy if both are frozen. - Edward Berard",
   ];
+
+  // Get random item without repeats until all are used
+  const getRandomUnique = (array: any[], usedIndices: number[], setUsedIndices: (indices: number[]) => void) => {
+    // Reset if all have been used
+    if (usedIndices.length >= array.length) {
+      setUsedIndices([]);
+      usedIndices = [];
+    }
+    
+    // Get available indices
+    const availableIndices = array
+      .map((_, index) => index)
+      .filter(index => !usedIndices.includes(index));
+    
+    // Pick random from available
+    const randomIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)];
+    
+    // Mark as used
+    setUsedIndices([...usedIndices, randomIndex]);
+    
+    return array[randomIndex];
+  };
 
   const commands: { [key: string]: () => void } = {
     help: () => {
@@ -154,11 +192,11 @@ const Terminal = ({ isOpen, onClose }: TerminalProps) => {
       ]);
     },
     joke: () => {
-      const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+      const randomJoke = getRandomUnique(jokes, usedJokes, setUsedJokes);
       setHistory([...history, `> ${input}`, "", randomJoke, ""]);
     },
     fortune: () => {
-      const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+      const randomFortune = getRandomUnique(fortunes, usedFortunes, setUsedFortunes);
       setHistory([...history, `> ${input}`, "", `💭 ${randomFortune}`, ""]);
     },
     secret: () => {
