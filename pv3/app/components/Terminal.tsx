@@ -125,8 +125,8 @@ const Terminal = ({ isOpen, onClose }: TerminalProps) => {
         ...history,
         `> ${input}`,
         "",
-        "📄 Opening resume...",
-        "(In a real implementation, this would download your PDF resume)",
+        "📄 Resume download",
+        "Coming soon! 🚧",
         "",
       ]);
     },
