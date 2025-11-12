@@ -4,36 +4,48 @@ export const projects = [
     description:
       "Full stack final exam scheduler with validated CRUD operations using Springboot REST API, PostgreSQL for exam data, and React with Tailwind for UI. Automated exam data import and one-click calendar export.",
     link: "https://github.com/manggo-cd/UBC-Exam-Scheduler",
+    demoLink: "", // Add your demo link here if deployed
+    tech: ["Java", "Springboot", "PostgreSQL", "React", "Tailwind"],
     year: "2025",
   },
   {
     name: "NextStep",
     description: `Natural-language query map application for web and mobile devices using OpenStreetMap, Expo SDK, AppleSDK, and Google Maps API. Integrated Expo Location API with real-time GPS tracking and route optimization via Google Gemini.`,
     link: "https://github.com/manggo-cd/nextstep",
+    demoLink: "",
+    tech: ["React Native", "Expo", "TypeScript", "Google Maps API"],
     year: "2025",
   },
   {
     name: "Vitasync",
     description: `Interactive desktop application for workout, macro-nutrient, and recipe logging using Java Swing with object-oriented design patterns and JSON data persistence. Comprehensive unit and integration tests with JUnit, achieving over 95% code coverage.`,
     link: "https://github.com/manggo-cd/VitasyncHealthApp",
+    demoLink: "",
+    tech: ["Java", "Swing", "JUnit", "JSON"],
     year: "2024",
   },
   {
     name: "Ransomware Sim",
     description: `A Python-based ransomware simulation tool that demonstrates file encryption and decryption using AES encryption, SHA-256 file integrity checks, and a custom Tkinter GUI styled with the Forest Light theme. This project is for educational and demonstration purposes only.`,
     link: "https://github.com/manggo-cd/RansomwareSim",
+    demoLink: "",
+    tech: ["Python", "Tkinter", "AES", "Cryptography"],
     year: "2024",
   },
   {
     name: "NES Emulator",
     description: `Nintendo Entertainment System emulator written in C++ and integrated with Unreal Engine. Features CPU emulation, memory mapping, ROM loading, and modular architecture with CMake build system and test suites.`,
     link: "https://github.com/manggo-cd/NES-Emulator",
+    demoLink: "",
+    tech: ["C++", "Unreal Engine", "CMake"],
     year: "2025",
   },
   {
     name: "RPS",
     description: `Rock Paper Scissors game implemented in MIPS Assembly with an AI bot opponent. Demonstrates low-level programming concepts including register management, memory operations, and system calls.`,
     link: "https://github.com/manggo-cd/rpsAssemby",
+    demoLink: "",
+    tech: ["MIPS Assembly", "Low-level"],
     year: "2024",
   },
   // {

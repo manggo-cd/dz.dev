@@ -14,7 +14,8 @@
 @media (width <=40rem) {
   body {
     font-size: 0.875rem;
-
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .subheadings {
@@ -25,7 +26,13 @@
     font-size: 3rem;
   }
 
+  .heading-hobby {
+    font-size: 2.5rem;
+  }
 
+  section {
+    padding-top: 5rem; /* Add space for sticky nav on mobile */
+  }
 }
 
 @media (width >=40rem) {
@@ -41,7 +48,15 @@
   .heading-1 {
     font-size: 6rem;
   }
+
+  .heading-hobby {
+    font-size: 5rem;
+  }
 }
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #070707;
   color: #F8F8F8;
@@ -139,15 +154,17 @@ body {
   border: solid 1px #F8F8F8;
   border-radius: 1.25rem;
   padding-left: 0.5rem;
-
 }
 
 .textbox-container {
   margin: 1rem 0;
   border: solid 1px #F8F8F8;
   padding: 1.5rem;
+}
 
-
+/* Remove all transitions from links */
+a {
+  transition: none !important;
 }
 
 .social-link {
@@ -158,4 +175,44 @@ body {
 
 .social-link:hover {
   opacity: 0.70;
+}
+
+/* Smooth color transitions for buttons only */
+button {
+  transition: color 0.3s ease-in-out;
+}
+
+/* Sticky mobile navigation */
+.sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: #070707;
+  border-bottom: 1px solid #F8F8F8;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.sticky-nav a {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #F8F8F8;
+  padding: 0.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.sticky-nav a:hover {
+  color: #CC0000;
+}
+
+@media (width >= 1024px) {
+  .sticky-nav {
+    display: none;
+  }
 }
