@@ -17,7 +17,7 @@ const SectionOne = () => {
             <div className="col-span-1 text-left flex flex-col justify-end">
               SOFTWARE DEVELOPER
             </div>
-            <div className="col-span-1 flex flex-col justify-end">
+            <div className={`col-span-1 flex flex-col justify-end ${use3D ? 'text-off' : 'text-[#070707]'}`}>
               VANCOUVER BC
             </div>
             <div className="col-span-1 text-right flex flex-col justify-end">
@@ -34,19 +34,25 @@ const SectionOne = () => {
         </div>
       </div>
 
-      {/* Toggle button */}
-      <button
-        onClick={() => setUse3D(!use3D)}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 text-xs px-4 py-2 border border-off hover:bg-off hover:text-[#070707]"
-      >
-        {use3D ? "2D STAR" : "3D SPIKY"}
-      </button>
+      {/* Subtle hint text */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 text-xs text-off opacity-50 pointer-events-none">
+        click the star
+      </div>
 
-      {/* Star - either 2D SVG or 3D Canvas */}
+      {/* Star - either 2D SVG or 3D Canvas - clickable to toggle */}
       {use3D ? (
-        <Star3D />
+        <div 
+          onClick={() => setUse3D(!use3D)}
+          className="cursor-pointer"
+        >
+          <Star3D />
+        </div>
       ) : (
-        <img src="./assets/main_star.svg" className="star-svg rotating-star" />
+        <img 
+          src="./assets/main_star.svg" 
+          className="star-svg rotating-star cursor-pointer" 
+          onClick={() => setUse3D(!use3D)}
+        />
       )}
     </section>
   );
