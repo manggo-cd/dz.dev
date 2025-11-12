@@ -4,111 +4,91 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
 
-function SpikyBall() {
-  const groupRef = useRef<THREE.Group>(null);
-  const sphereRef = useRef<THREE.Mesh>(null);
-  const spikesRef = useRef<THREE.Mesh[]>([]);
+function OrganicSpikyBall() {
+  const meshRef = useRef<THREE.Mesh>(null);
 
-  // Create spiky ball geometry with individual materials
-  const { sphere, spikes } = useMemo(() => {
-    const sphereRadius = 1.4; // Smaller, less imposing
-    const spikeLength = 1.6; // Shorter, less aggressive
-    const spikeBaseRadius = 0.28; // Smaller base for gentler look
+  // Create unified organic spiky geometry - single mesh for smooth welded look
+  const geometry = useMemo(() => {
+    // Start with icosahedron for base spiky distribution
+    const baseRadius = 1.2;
+    const spikeHeight = 1.4;
+    
+    // Create custom geometry by modifying sphere vertices
+    const geo = new THREE.IcosahedronGeometry(baseRadius, 3); // Higher subdivision for smoothness
+    const positionAttribute = geo.attributes.position;
+    const vertex = new THREE.Vector3();
+    
+    // Get all unique spike directions from lower-res icosahedron
+    const spikeDirections: THREE.Vector3[] = [];
+    const tempGeo = new THREE.IcosahedronGeometry(1, 1); // Lower res for spike points
+    const tempPos = tempGeo.attributes.position;
+    
+    for (let i = 0; i < tempPos.count; i++) {
+      const dir = new THREE.Vector3(
+        tempPos.getX(i),
+        tempPos.getY(i),
+        tempPos.getZ(i)
+      ).normalize();
+      spikeDirections.push(dir);
+    }
+    
+    // Modify vertices to create organic spike flow
+    for (let i = 0; i < positionAttribute.count; i++) {
+      vertex.fromBufferAttribute(positionAttribute, i);
+      const originalLength = vertex.length();
+      const direction = vertex.clone().normalize();
+      
+      // Find closest spike direction
+      let maxDot = -1;
+      for (const spikeDir of spikeDirections) {
+        const dot = direction.dot(spikeDir);
+        if (dot > maxDot) {
+          maxDot = dot;
+        }
+      }
+      
+      // Smooth falloff creates organic welded appearance
+      // Vertices near spike directions are pulled outward
+      const influence = Math.pow(Math.max(0, maxDot), 3); // Cubic falloff for smooth blend
+      const targetLength = baseRadius + (spikeHeight * influence);
+      
+      vertex.normalize().multiplyScalar(targetLength);
+      positionAttribute.setXYZ(i, vertex.x, vertex.y, vertex.z);
+    }
+    
+    geo.computeVertexNormals(); // Recalculate normals for proper lighting
+    
+    return geo;
+  }, []);
 
-    // Central sphere - silver chrome with iridescence
-    const sphereGeometry = new THREE.SphereGeometry(sphereRadius, 64, 64);
-    const sphereMaterial = new THREE.MeshPhysicalMaterial({
-      color: "#c0c0c0", // Silver/chrome base
-      metalness: 1.0,   // Full metallic
-      roughness: 0.12,  // Very smooth for mirror shine
-      envMapIntensity: 3.0,
-      clearcoat: 1.0,   // Adds glossy layer
+  const material = useMemo(() => {
+    return new THREE.MeshPhysicalMaterial({
+      color: "#c0c0c0", // Silver chrome
+      metalness: 0.98,
+      roughness: 0.12,
+      envMapIntensity: 2.8,
+      clearcoat: 1.0,
       clearcoatRoughness: 0.08,
-      iridescence: 1.0, // Rainbow oil-slick effect
-      iridescenceIOR: 1.8,
-      iridescenceThicknessRange: [100, 800], // Creates color shifting
-      sheen: 0.5,       
+      iridescence: 1.0,
+      iridescenceIOR: 2.1,
+      iridescenceThicknessRange: [100, 900],
+      sheen: 0.6,
       sheenRoughness: 0.2,
       sheenColor: new THREE.Color("#ffffff"),
     });
-    const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-    sphere.castShadow = true;
-    sphere.receiveShadow = true;
-
-    // Create uniform spikes ALL OVER the ball
-    const spikesArray: THREE.Mesh[] = [];
-    
-    // Use subdivided icosahedron for complete coverage
-    const ico = new THREE.IcosahedronGeometry(1, 2); // subdivision = 2 for more points
-    const positions = ico.attributes.position;
-    
-    // Use ALL vertices for complete coverage
-    for (let i = 0; i < positions.count; i++) {
-      const x = positions.getX(i);
-      const y = positions.getY(i);
-      const z = positions.getZ(i);
-      
-      // Create softer cone shape with rounded segments
-      const coneGeometry = new THREE.ConeGeometry(
-        spikeBaseRadius, // Smaller base
-        spikeLength,     // Shorter height
-        12,              // Radial segments
-        3,               // Height segments for smoother taper
-        false            // Not open ended
-      );
-      
-      const spikeMaterial = new THREE.MeshPhysicalMaterial({
-        color: "#b8b8b8", // Silver/chrome for spikes
-        metalness: 1.0,   // Full metallic
-        roughness: 0.08,  // Very smooth for maximum shine
-        envMapIntensity: 3.5,
-        clearcoat: 1.0,   // Glossy coating
-        clearcoatRoughness: 0.04,
-        iridescence: 0.95, // Strong rainbow oil-slick effect
-        iridescenceIOR: 2.0,
-        iridescenceThicknessRange: [200, 1000], // More dramatic color shift
-        sheen: 0.6,       
-        sheenRoughness: 0.1,
-        sheenColor: new THREE.Color("#ffffff"),
-        reflectivity: 1.0,
-      });
-      
-      const cone = new THREE.Mesh(coneGeometry, spikeMaterial);
-      cone.castShadow = true;
-      cone.receiveShadow = true;
-
-      // Direction vector - normalized for uniform length
-      const direction = new THREE.Vector3(x, y, z).normalize();
-      
-      // Position at sphere surface
-      cone.position.copy(direction.clone().multiplyScalar(sphereRadius));
-
-      // Align spike to point straight outward (not slanted)
-      const up = new THREE.Vector3(0, 1, 0);
-      cone.quaternion.setFromUnitVectors(up, direction);
-
-      spikesArray.push(cone);
-    }
-
-    return { sphere, spikes: spikesArray };
   }, []);
 
   // Smooth rotation
-  useFrame((state) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.x += 0.002;
-      groupRef.current.rotation.y += 0.003;
-      groupRef.current.rotation.z += 0.001;
+  useFrame(() => {
+    if (meshRef.current) {
+      meshRef.current.rotation.x += 0.002;
+      meshRef.current.rotation.y += 0.003;
+      meshRef.current.rotation.z += 0.001;
     }
   });
 
   return (
-    <group ref={groupRef}>
-      <primitive object={sphere} ref={sphereRef} />
-      {spikes.map((spike, index) => (
-        <primitive key={index} object={spike} />
-      ))}
-    </group>
+    <mesh ref={meshRef} geometry={geometry} material={material} castShadow receiveShadow />
   );
 }
 
@@ -179,7 +159,7 @@ const Star3D = () => {
           intensity={0.8}
         />
         
-        <SpikyBall />
+        <OrganicSpikyBall />
       </Canvas>
     </div>
   );
