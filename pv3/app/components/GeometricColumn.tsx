@@ -106,6 +106,11 @@ const GeometricColumn = () => {
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
+            style={{
+              transform: `rotate(${scrollProgress * 0.5}deg)`,
+              transformOrigin: 'center',
+              transition: 'transform 0.1s linear'
+            }}
           />
           <polygon
             points="0,-30 26,15 -26,15"
@@ -114,8 +119,9 @@ const GeometricColumn = () => {
             strokeWidth="1.5"
             opacity="0.5"
             style={{
-              transform: `rotate(180deg)`,
-              transformOrigin: 'center'
+              transform: `rotate(${180 - scrollProgress * 0.5}deg)`,
+              transformOrigin: 'center',
+              transition: 'transform 0.1s linear'
             }}
           />
         </g>
