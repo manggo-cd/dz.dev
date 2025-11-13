@@ -136,8 +136,8 @@ body {
 }
 
 .star-3d-canvas {
-  width: 600px;
-  height: 600px;
+  width: 800px !important;
+  height: 800px !important;
 }
 
 /* Responsive sizing for 3D star on mobile */
