@@ -1,6 +1,5 @@
 import SectionOne from "./components/SectionOne";
 import SectionTwo from "./components/SectionTwo";
-import StickyNav from "./components/StickyNav";
 import TerminalTrigger from "./components/TerminalTrigger";
 
 export default function Home() {
@@ -8,7 +7,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <StickyNav />
       <TerminalTrigger />
       <SectionOne />
 

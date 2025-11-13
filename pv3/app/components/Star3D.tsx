@@ -130,9 +130,10 @@ function TriangularFrameStar() {
 
 const Star3D = () => {
   return (
-    <div className="absolute inset-0 z-1 flex items-center justify-center scale-50 sm:scale-75 md:scale-90 lg:scale-100">
+    <div className="absolute z-1 mix-blend-difference star-3d-wrapper" style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
       <Canvas 
         shadows 
+        className="star-3d-canvas"
         gl={{ 
           antialias: true, 
           alpha: true,
