@@ -1,6 +1,6 @@
 export const experiences = [
   {
-    title: "sdet intern",
+    title: "Incoming sdet intern",
     location: "vancouver",
     company: "global relay",
     start: "jan2026",
