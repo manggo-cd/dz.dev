@@ -18,6 +18,16 @@ const Terminal = ({ isOpen, onClose }: TerminalProps) => {
   const [usedFortunes, setUsedFortunes] = useState<number[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const historyRef = useRef<HTMLDivElement>(null);
+  
+  // Snake game state
+  const [gameMode, setGameMode] = useState<"terminal" | "snake">("terminal");
+  const [snake, setSnake] = useState<Array<{ x: number; y: number }>>([]);
+  const [food, setFood] = useState<{ x: number; y: number }>({ x: 5, y: 5 });
+  const [direction, setDirection] = useState<{ x: number; y: number }>({ x: 1, y: 0 });
+  const [score, setScore] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+  const gameLoopRef = useRef<NodeJS.Timeout | null>(null);
+  const GRID_SIZE = 15;
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
@@ -30,6 +40,148 @@ const Terminal = ({ isOpen, onClose }: TerminalProps) => {
       historyRef.current.scrollTop = historyRef.current.scrollHeight;
     }
   }, [history]);
+
+  // Snake game functions
+  const initSnakeGame = () => {
+    setSnake([
+      { x: 7, y: 7 },
+      { x: 6, y: 7 },
+      { x: 5, y: 7 },
+    ]);
+    setDirection({ x: 1, y: 0 });
+    setScore(0);
+    setGameOver(false);
+    spawnFood([{ x: 7, y: 7 }, { x: 6, y: 7 }, { x: 5, y: 7 }]);
+  };
+
+  const spawnFood = (currentSnake: Array<{ x: number; y: number }>) => {
+    let newFood;
+    do {
+      newFood = {
+        x: Math.floor(Math.random() * GRID_SIZE),
+        y: Math.floor(Math.random() * GRID_SIZE),
+      };
+    } while (currentSnake.some((segment) => segment.x === newFood.x && segment.y === newFood.y));
+    setFood(newFood);
+  };
+
+  const moveSnake = () => {
+    if (gameOver) return;
+
+    setSnake((prevSnake) => {
+      const head = { ...prevSnake[0] };
+      head.x += direction.x;
+      head.y += direction.y;
+
+      // Check wall collision
+      if (head.x < 0 || head.x >= GRID_SIZE || head.y < 0 || head.y >= GRID_SIZE) {
+        setGameOver(true);
+        return prevSnake;
+      }
+
+      // Check self collision
+      if (prevSnake.some((segment) => segment.x === head.x && segment.y === head.y)) {
+        setGameOver(true);
+        return prevSnake;
+      }
+
+      const newSnake = [head, ...prevSnake];
+
+      // Check food collision
+      if (head.x === food.x && head.y === food.y) {
+        setScore((prev) => prev + 10);
+        spawnFood(newSnake);
+      } else {
+        newSnake.pop();
+      }
+
+      return newSnake;
+    });
+  };
+
+  // Game loop effect
+  useEffect(() => {
+    if (gameMode === "snake" && !gameOver) {
+      gameLoopRef.current = setInterval(moveSnake, 150);
+      return () => {
+        if (gameLoopRef.current) clearInterval(gameLoopRef.current);
+      };
+    }
+  }, [gameMode, direction, gameOver, food]);
+
+  // Handle keyboard for snake game
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (gameMode !== "snake") return;
+
+      if (e.key === "Escape") {
+        setGameMode("terminal");
+        if (gameLoopRef.current) clearInterval(gameLoopRef.current);
+        setHistory([
+          ...history,
+          "",
+          "🐍 Snake game ended",
+          `Final score: ${score}`,
+          "",
+        ]);
+        return;
+      }
+
+      if (gameOver) return;
+
+      const key = e.key.toLowerCase();
+      
+      setDirection((prevDir) => {
+        // Prevent opposite direction
+        if ((key === "w" || key === "arrowup") && prevDir.y === 0) {
+          return { x: 0, y: -1 };
+        } else if ((key === "s" || key === "arrowdown") && prevDir.y === 0) {
+          return { x: 0, y: 1 };
+        } else if ((key === "a" || key === "arrowleft") && prevDir.x === 0) {
+          return { x: -1, y: 0 };
+        } else if ((key === "d" || key === "arrowright") && prevDir.x === 0) {
+          return { x: 1, y: 0 };
+        }
+        return prevDir;
+      });
+      
+      // Prevent scrolling
+      if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+        e.preventDefault();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [gameMode, gameOver, score, history]);
+
+  const renderSnakeGame = () => {
+    const grid: string[][] = [];
+    for (let y = 0; y < GRID_SIZE; y++) {
+      grid[y] = [];
+      for (let x = 0; x < GRID_SIZE; x++) {
+        grid[y][x] = "·";
+      }
+    }
+
+    // Draw snake
+    snake.forEach((segment, index) => {
+      if (segment.x >= 0 && segment.x < GRID_SIZE && segment.y >= 0 && segment.y < GRID_SIZE) {
+        grid[segment.y][segment.x] = index === 0 ? "●" : "○";
+      }
+    });
+
+    // Draw food
+    if (food.x >= 0 && food.x < GRID_SIZE && food.y >= 0 && food.y < GRID_SIZE) {
+      grid[food.y][food.x] = "◉";
+    }
+
+    return grid.map((row) => row.join(" ")).join("\n");
+  };
+
+  const restartSnakeGame = () => {
+    initSnakeGame();
+  };
 
   const jokes = [
     "Why do programmers prefer dark mode?\nBecause light attracts bugs! 🐛",
@@ -182,14 +334,13 @@ const Terminal = ({ isOpen, onClose }: TerminalProps) => {
         ...history,
         `> ${input}`,
         "",
-        "🐍 SNAKE GAME",
-        "==================",
-        "Coming soon! 🚧",
-        "(Feature in development)",
-        "",
-        "For now, try: joke, fortune, or secret",
+        "🐍 Starting Snake Game...",
+        "Use WASD or Arrow Keys to move",
+        "Press ESC to quit",
         "",
       ]);
+      initSnakeGame();
+      setGameMode("snake");
     },
     joke: () => {
       const randomJoke = getRandomUnique(jokes, usedJokes, setUsedJokes);
@@ -337,25 +488,73 @@ const Terminal = ({ isOpen, onClose }: TerminalProps) => {
           className="h-96 overflow-y-auto p-4 text-sm"
           style={{ scrollbarWidth: "thin" }}
         >
-          {history.map((line, index) => (
-            <div key={index} className="whitespace-pre-wrap">
-              {line}
+          {gameMode === "snake" ? (
+            <div className="flex flex-col items-center justify-center h-full">
+              <div className="mb-4 text-center">
+                <div className="text-xl font-bold mb-2">🐍 SNAKE GAME 🐍</div>
+                <div className="text-lg">SCORE: {score}</div>
+                <div className="text-xs opacity-70 mt-1">
+                  {gameOver ? "GAME OVER!" : "WASD or Arrow Keys | ESC to quit"}
+                </div>
+              </div>
+              <pre className="font-mono text-xs leading-tight">
+                {renderSnakeGame()}
+              </pre>
+              {gameOver && (
+                <div className="mt-4 flex flex-col items-center gap-3">
+                  <div className="text-highlight-red font-bold animate-pulse">
+                    💀 GAME OVER 💀
+                  </div>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={restartSnakeGame}
+                      className="px-4 py-2 bg-highlight-red text-black font-bold hover:bg-white transition-colors"
+                    >
+                      🔄 RESTART
+                    </button>
+                    <button
+                      onClick={() => {
+                        setGameMode("terminal");
+                        if (gameLoopRef.current) clearInterval(gameLoopRef.current);
+                        setHistory([
+                          ...history,
+                          "",
+                          "🐍 Snake game ended",
+                          `Final score: ${score}`,
+                          "",
+                        ]);
+                      }}
+                      className="px-4 py-2 border border-off hover:bg-off hover:bg-opacity-20 transition-colors font-bold"
+                    >
+                      ✕ EXIT
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
-          ))}
+          ) : (
+            <>
+              {history.map((line, index) => (
+                <div key={index} className="whitespace-pre-wrap">
+                  {line}
+                </div>
+              ))}
 
-          {/* Input Line */}
-          <form onSubmit={handleSubmit} className="flex items-center">
-            <span className="mr-2 text-highlight-red">guest@daniel.dev:~$</span>
-            <input
-              ref={inputRef}
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              className="flex-1 bg-transparent outline-none"
-              autoComplete="off"
-              spellCheck="false"
-            />
-          </form>
+              {/* Input Line */}
+              <form onSubmit={handleSubmit} className="flex items-center">
+                <span className="mr-2 text-highlight-red">guest@daniel.dev:~$</span>
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  className="flex-1 bg-transparent outline-none"
+                  autoComplete="off"
+                  spellCheck="false"
+                />
+              </form>
+            </>
+          )}
         </div>
 
         {/* Terminal Footer */}
