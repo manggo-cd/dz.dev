@@ -55,7 +55,7 @@ const Terminal = ({ isOpen, onClose }: TerminalProps) => {
   };
 
   const spawnFood = (currentSnake: Array<{ x: number; y: number }>) => {
-    let newFood;
+    let newFood: { x: number; y: number };
     do {
       newFood = {
         x: Math.floor(Math.random() * GRID_SIZE),
