@@ -1,10 +1,23 @@
 export const experiences = [
   {
+    title: "Incoming SDET intern",
+    location: "vancouver",
+    company: "global relay",
+    start: "jan2026",
+    end: "present",
+    details: [
+      "Joining the Connectors team to develop high-performance data connectors for compliance and archiving",
+      "Building and automating test frameworks for scalable microservices used by 22 of the top 25 banks",
+      "Testing integration with communication platforms including Microsoft Teams, Slack, Zoom, and more",
+      "Contributing to CI/CD pipelines and participating in agile development practices with code reviews"
+    ]
+  },
+  {
     title: "backend engineer intern",
     location: "vancouver",
     company: "suogogo technologies",
-    start: "aug2025",
-    end: "present",
+    start: "sept2025",
+    end: "dec2025",
     details: [
       "Built and shipped data processing pipelines, leveraging Prisma ORM with PostgreSQL",
       "Implemented database transaction management, Redis caching for session data, and optimized query patterns",
@@ -28,11 +41,11 @@ export const experiences = [
   {
     title: "software developer intern",
     location: "vancouver",
-    company: "second savour - startup",
+    company: "second savour",
     start: "sept2024",
     end: "apr2025",
     details: [
-      "Developed an ecommerce platform for a food startup using JavaScript, Next.js & React",
+      "Developed an ecommerce platform for a startup using JavaScript, Next.js & React",
       "Generated over $1K CAD in revenue monthly. Assisted in taste-testing and eating the snacks",
       "Designed and implemented secure Restful APIs servicing over 1000 users for authentication and cart",
       "Collaborated in an Agile/SCRUM environment with sprint planning, daily stand-ups, and code reviews"
