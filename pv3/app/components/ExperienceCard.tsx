@@ -28,7 +28,10 @@ const ExperienceCard = ({ experience }: ExperienceProps) => {
           <div className="flex flex-row justify-between">
             <p className="text-highlight-red">{experience.company.toUpperCase()}</p>
             <p className="text-right">
-              {experience.start.toUpperCase()} - {experience.end ? experience.end.toUpperCase() : "PRESENT"}
+              {experience.end 
+                ? `${experience.start.toUpperCase()} - ${experience.end.toUpperCase()}`
+                : experience.start.toUpperCase()
+              }
             </p>
           </div>
         </div>
