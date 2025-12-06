@@ -4,7 +4,7 @@ export const experiences = [
     location: "vancouver",
     company: "global relay",
     start: "jan2026",
-    end: "present",
+    //end: "present",
     details: [
       "Joining the Connectors team to develop high-performance data connectors for compliance and archiving",
       "Building and automating test frameworks for scalable microservices used by 22 of the top 25 banks",
