@@ -1,10 +1,9 @@
 export const experiences = [
   {
-    title: "Incoming SDET intern",
+    title: "sdet intern",
     location: "vancouver",
     company: "global relay",
     start: "jan2026",
-    //end: "present",
     details: [
       "Joining the Connectors team to develop high-performance data connectors for compliance and archiving",
       "Building and automating test frameworks for scalable microservices used by 22 of the top 25 banks",
@@ -42,7 +41,7 @@ export const experiences = [
     title: "software developer intern",
     location: "vancouver",
     company: "second savour",
-    start: "sept2024",
+    start: "jan2025",
     end: "apr2025",
     details: [
       "Developed an ecommerce platform for a startup using JavaScript, Next.js & React",

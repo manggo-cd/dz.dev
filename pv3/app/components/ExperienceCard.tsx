@@ -6,7 +6,7 @@ interface Experience {
   location: string;
   company: string;
   start: string;
-  end: string;
+  end?: string;
   details?: string[];
 }
 
@@ -28,7 +28,7 @@ const ExperienceCard = ({ experience }: ExperienceProps) => {
           <div className="flex flex-row justify-between">
             <p className="text-highlight-red">{experience.company.toUpperCase()}</p>
             <p className="text-right">
-              {experience.start.toUpperCase()} - {experience.end.toUpperCase()}
+              {experience.start.toUpperCase()} - {experience.end ? experience.end.toUpperCase() : "PRESENT"}
             </p>
           </div>
         </div>
