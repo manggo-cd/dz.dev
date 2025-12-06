@@ -11,6 +11,8 @@ import HobbySection from "./HobbySection";
 import AboutSection from "./AboutSection";
 import TechStack from "./TechStack";
 import GeometricColumn from "./GeometricColumn";
+import CurrentlyLearning from "./CurrentlyLearning";
+import QuickStats from "./QuickStats";
 
 const SectionTwo = () => {
   const [curProject, setProject] = useState(projects[0]);
@@ -62,9 +64,38 @@ const SectionTwo = () => {
           </div>
         </div>
         
-        {/* Desktop: Right column (Tech Stack) | Mobile: Order 3 */}
+        {/* Desktop: Right column (Tech Stack, Currently Learning, Quick Stats) | Mobile: Order 3 */}
         <div className="col-span-1 lg:order-3 order-3" id="tech-stack">
           <TechStack />
+          
+          <div className="grid grid-cols-3 lg:my-15 my-10">
+            <div className="flex justify-center">
+              <img src="/assets/small_star.svg" />
+            </div>
+            <div className="flex justify-center">
+              <img src="/assets/small_star.svg" />
+            </div>
+            <div className="flex justify-center">
+              <img src="/assets/small_star.svg" />
+            </div>
+          </div>
+
+          <CurrentlyLearning />
+          
+          <div className="grid grid-cols-3 lg:my-15 my-10">
+            <div className="flex justify-center">
+              <img src="/assets/small_star.svg" />
+            </div>
+            <div className="flex justify-center">
+              <img src="/assets/small_star.svg" />
+            </div>
+            <div className="flex justify-center">
+              <img src="/assets/small_star.svg" />
+            </div>
+          </div>
+
+          <QuickStats />
+          
           <GeometricColumn />
         </div>
       </div>

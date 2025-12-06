@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 
 interface Experience {
   title: string;
@@ -12,11 +12,11 @@ interface Experience {
 
 interface ExperienceProps {
   experience: Experience;
+  isExpanded: boolean;
+  onToggle: () => void;
 }
 
-const ExperienceCard = ({ experience }: ExperienceProps) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
+const ExperienceCard = ({ experience, isExpanded, onToggle }: ExperienceProps) => {
   return (
     <div className="my-5 w-inherit px-5 font-bold experience-card">
       <div className="flex flex-row justify-between items-start">
@@ -35,7 +35,7 @@ const ExperienceCard = ({ experience }: ExperienceProps) => {
         
         {experience.details && experience.details.length > 0 && (
           <button
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={onToggle}
             className="text-2xl font-bold hover:text-highlight-red transition-all duration-300 ml-3"
             aria-label={isExpanded ? "Collapse details" : "Expand details"}
           >
