@@ -1,30 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1a1a2e"/>
-      <stop offset="100%" stop-color="#0f0f1a"/>
-    </linearGradient>
-    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#8b5cf6"/>
-      <stop offset="100%" stop-color="#6366f1"/>
+    <linearGradient id="moon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
     </linearGradient>
   </defs>
   
-  <!-- Dark circular background -->
-  <circle cx="90" cy="90" r="90" fill="url(#bg)"/>
+  <!-- Background -->
+  <rect width="180" height="180" fill="#0a0a0a"/>
   
-  <!-- Outer ring -->
-  <circle cx="90" cy="90" r="68" fill="none" stroke="url(#accent)" stroke-width="8"/>
+  <!-- Crescent moon using circle subtraction -->
+  <mask id="crescentMask">
+    <circle cx="90" cy="90" r="60" fill="white"/>
+    <circle cx="120" cy="70" r="50" fill="black"/>
+  </mask>
   
-  <!-- Inner zen flowing arc -->
-  <path 
-    d="M56 90 Q90 45 124 90 Q90 135 56 90" 
-    fill="none" 
-    stroke="#a78bfa" 
-    stroke-width="8" 
-    stroke-linecap="round"
-  />
-  
-  <!-- Center dot -->
-  <circle cx="90" cy="90" r="10" fill="#c4b5fd"/>
+  <circle cx="90" cy="90" r="60" fill="url(#moon)" mask="url(#crescentMask)"/>
 </svg>
