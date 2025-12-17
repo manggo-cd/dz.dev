@@ -6,7 +6,7 @@ export default function ProjectsPage() {
   const projects = [
     {
       title: "UBC Scheduler",
-      description: "Full-stack exam scheduler with Spring Boot REST API, PostgreSQL, and React. Automated exam data import and one-click calendar export. Scaled to 22,000+ users and 500,000+ page views, widely adopted among UBC students.",
+      description: "Full-stack exam scheduler with Spring Boot REST API, PostgreSQL, and React. Automated exam data import and one-click calendar export. Scaled to 22,000+ users and 500,000+ page views. Note: Exam data from the registrar's office is no longer provided; no live data is currently being used.",
       tags: ["Java", "SpringBoot", "AWS", "Docker", "PostgreSQL", "React"],
       link: "https://github.com/manggo-cd/UBC-Exam-Scheduler",
       year: "2024",

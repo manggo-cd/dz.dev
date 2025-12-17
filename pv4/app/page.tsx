@@ -14,7 +14,7 @@ export default function Portfolio() {
   const projects = [
     {
       title: "UBC Scheduler",
-      description: "Full-stack exam scheduler with Spring Boot REST API, PostgreSQL, and React. Automated exam data import and one-click calendar export. Scaled to 22,000+ users and 500,000+ page views.",
+      description: "Exam scheduling app serving 22,000+ UBC students with automated calendar export.",
       tags: ["Java", "SpringBoot", "PostgreSQL", "React", "Tailwind"],
       link: "https://github.com/manggo-cd/UBC-Exam-Scheduler",
     },
