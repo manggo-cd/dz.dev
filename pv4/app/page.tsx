@@ -208,9 +208,12 @@ export default function Portfolio() {
             <section>
               <h2 className="text-xs tracking-[0.3em] text-zinc-500 mb-6">CONTACT</h2>
               <div className="space-y-4">
-                <p className="text-sm text-zinc-400">
+                <a 
+                  href="mailto:danielzhou.nc@gmail.com"
+                  className="text-sm text-zinc-400 hover:text-zinc-200 transition-colors"
+                >
                   danielzhou.nc (at) gmail (dot) com
-                </p>
+                </a>
                 <div className="flex gap-6 text-sm">
                   <a 
                     href="https://github.com/manggo-cd"
