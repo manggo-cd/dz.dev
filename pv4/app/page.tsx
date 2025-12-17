@@ -1,101 +1,61 @@
-"use client";
-
-import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { Github, Linkedin, ArrowUpRight } from "lucide-react";
+import { ThemeToggle } from "./components/ThemeToggle";
 
 export default function Portfolio() {
-  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
-  const heroRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (heroRef.current) {
-        const rect = heroRef.current.getBoundingClientRect();
-        setMousePos({
-          x: ((e.clientX - rect.left) / rect.width) * 100,
-          y: ((e.clientY - rect.top) / rect.height) * 100,
-        });
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
 
   const experiences = [
     { role: "Incoming SDE Intern", company: "Global Relay", period: "Jan 2026" },
     { role: "Backend Engineer Intern", company: "Suogogo Technologies", period: "Sept - Dec 2025" },
     { role: "Research Assistant", company: "UBC Visual Cognition Lab", period: "Sept 2025 - Present" },
-    { role: "Software Developer Intern", company: "Second Savour", period: "Jan - Apr 2025" },
+    { role: "Software Developer", company: "Second Savour", period: "Jan - Apr 2025" },
   ];
 
   const projects = [
     {
       title: "UBC Scheduler",
-      tags: ["Java", "SpringBoot", "PostgreSQL", "React"],
+      description: "Full-stack exam scheduler with Spring Boot REST API, PostgreSQL, and React. Automated exam data import and one-click calendar export. Scaled to 22,000+ users and 500,000+ page views.",
+      tags: ["Java", "SpringBoot", "PostgreSQL", "React", "Tailwind"],
       link: "https://github.com/manggo-cd/UBC-Exam-Scheduler",
     },
     {
-      title: "NexStep",
-      tags: ["Python", "TensorFlow", "Neo4j"],
+      title: "Poker Vision",
+      description: "Computer vision pipeline with OpenCV and PyTorch for real-time playing card recognition. CNN-based classification with Monte Carlo simulation for optimal play evaluation.",
+      tags: ["Python", "OpenCV", "PyTorch", "FastAPI", "CNN"],
       link: "https://github.com",
     },
     {
-      title: "VitaSync",
-      tags: ["TypeScript", "Next.js", "WebSocket"],
+      title: "NES Emulator",
+      description: "Nintendo Entertainment System emulator built in C++, compatible with Raspberry Pi. Emulates the 6502 microprocessor instruction set by replicating system architecture in software.",
+      tags: ["C++", "Unreal Engine", "Systems"],
       link: "https://github.com",
     },
     {
       title: "Ransomware Sim",
+      description: "Educational ransomware simulation for cybersecurity training and awareness.",
       tags: ["Python", "Cryptography"],
       link: "https://github.com",
     },
   ];
 
   return (
-    <div className="bg-black text-white min-h-screen font-mono">
+    <div className="min-h-screen font-mono" style={{ backgroundColor: "var(--bg-primary)", color: "var(--text-primary)" }}>
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-sm border-b border-zinc-800">
+      <nav className="fixed top-0 w-full z-50 backdrop-blur-sm border-b" style={{ backgroundColor: "var(--bg-primary)", borderColor: "var(--border-color)", opacity: 0.95 }}>
         <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
-          <div className="text-xs tracking-[0.3em] font-bold">DKN</div>
-          <div className="flex gap-6 text-xs tracking-wider">
-            <a href="https://github.com/manggo-cd" className="hover:text-zinc-400 transition-colors">github</a>
-            <a href="https://www.linkedin.com/in/dzhou05/" className="hover:text-zinc-400 transition-colors">linkedin</a>
-            <a href="mailto:dzhou05@student.ubc.ca" className="hover:text-zinc-400 transition-colors">contact</a>
+          <ThemeToggle />
+          <div className="flex items-center gap-6 text-xs tracking-wider" style={{ color: "var(--text-primary)" }}>
+            <Link href="/projects" className="hover:opacity-60 transition-opacity">projects</Link>
+            <Link href="/blog" className="hover:opacity-60 transition-opacity">blog</Link>
+            <a href="https://github.com/manggo-cd" className="hover:opacity-60 transition-opacity">github</a>
+            <a href="https://www.linkedin.com/in/dzhou05/" className="hover:opacity-60 transition-opacity">linkedin</a>
           </div>
         </div>
       </nav>
 
       <div className="max-w-7xl mx-auto px-8 pt-20">
-        {/* Hero Section with Eyes */}
-        <section ref={heroRef} className="py-16 relative">
-          {/* Animated Eyes */}
-          <div className="absolute top-0 left-0 right-0 flex items-center justify-center gap-12 opacity-30 pointer-events-none">
-            {[0, 1, 2].map((i) => (
-              <div key={i} className="relative w-20 h-20 animate-pulse" style={{ animationDelay: `${i * 0.3}s`, animationDuration: "3s" }}>
-                <svg viewBox="0 0 200 200" className="w-full h-full">
-                  <ellipse cx="100" cy="100" rx="80" ry="50" fill="none" stroke="currentColor" strokeWidth="2" className="text-zinc-700" />
-                  <circle
-                    cx={100 + (mousePos.x - 50) * 0.15}
-                    cy={100 + (mousePos.y - 50) * 0.1}
-                    r="25"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    className="text-zinc-600 transition-all duration-100"
-                  />
-                  <circle
-                    cx={100 + (mousePos.x - 50) * 0.15}
-                    cy={100 + (mousePos.y - 50) * 0.1}
-                    r="12"
-                    fill="currentColor"
-                    className="text-zinc-400 transition-all duration-100"
-                  />
-                </svg>
-              </div>
-            ))}
-          </div>
-
+        {/* Hero Section */}
+        <section className="py-16 relative">
           {/* Hero Text */}
           <div className="relative z-10 mb-16">
             <h1 className="text-5xl md:text-7xl font-bold mb-4 tracking-tight">
@@ -142,30 +102,62 @@ export default function Portfolio() {
             <section>
               <h2 className="text-xs tracking-[0.3em] text-zinc-500 mb-6">PROJECTS</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {projects.map((project, i) => (
+                {projects.slice(0, 4).map((project, i) => (
                   <a
                     key={i}
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group border border-zinc-800 hover:border-zinc-600 transition-all p-5 bg-black"
+                    className="group relative border border-zinc-800 hover:border-zinc-600 transition-all p-5 bg-black overflow-hidden"
                   >
-                    <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-base font-medium group-hover:text-zinc-300 transition-colors">
-                        {project.title}
-                      </h3>
-                      <ArrowUpRight className="w-4 h-4 text-zinc-600 group-hover:text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                    {/* Default content */}
+                    <div className="transition-all duration-300 group-hover:opacity-0 group-hover:-translate-y-2">
+                      <div className="flex justify-between items-start mb-3">
+                        <h3 className="text-base font-medium group-hover:text-zinc-300 transition-colors">
+                          {project.title}
+                        </h3>
+                        <ArrowUpRight className="w-4 h-4 text-zinc-600 group-hover:text-zinc-400 transition-all" />
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.tags.slice(0, 3).map((tag, idx) => (
+                          <span key={idx} className="text-xs px-2 py-0.5 border border-zinc-800 text-zinc-600">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                    <div className="flex flex-wrap gap-1.5">
-                      {project.tags.slice(0, 3).map((tag, idx) => (
-                        <span key={idx} className="text-xs px-2 py-0.5 border border-zinc-800 text-zinc-600">
-                          {tag}
-                        </span>
-                      ))}
+
+                    {/* Hover content */}
+                    <div className="absolute inset-0 p-5 flex flex-col justify-between opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                      <div>
+                        <div className="flex justify-between items-start mb-3">
+                          <h3 className="text-base font-medium text-zinc-300">
+                            {project.title}
+                          </h3>
+                          <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                        </div>
+                        <p className="text-xs text-zinc-400 leading-relaxed">
+                          {project.description}
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5 mt-3">
+                        {project.tags.slice(0, 3).map((tag, idx) => (
+                          <span key={idx} className="text-xs px-2 py-0.5 border border-zinc-700 text-zinc-500">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </a>
                 ))}
               </div>
+              <Link 
+                href="/projects" 
+                className="inline-flex items-center gap-2 mt-6 text-xs text-zinc-500 hover:text-zinc-300 transition-colors group"
+              >
+                <span>view all projects</span>
+                <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </Link>
             </section>
           </div>
 
@@ -184,7 +176,7 @@ export default function Portfolio() {
                 <div>
                   <h3 className="text-xs text-zinc-600 mb-3">INTERESTS</h3>
                   <div className="flex flex-wrap gap-2">
-                    {["Basketball", "Cyberpunk", "Poker", "Snowboarding"].map(interest => (
+                    {["Basketball", "Cyberpunk", "Poker", "Snowboarding", "Gym", "Hiking", "Guitar"].map(interest => (
                       <span key={interest} className="px-3 py-1 border border-zinc-800 text-xs text-zinc-500">
                         {interest}
                       </span>
@@ -195,7 +187,7 @@ export default function Portfolio() {
                 <div>
                   <h3 className="text-xs text-zinc-600 mb-3">STACK</h3>
                   <p className="text-xs text-zinc-500 leading-relaxed">
-                    Java · TypeScript · Python · C/C++ · Go · React · SpringBoot · Next.js · PostgreSQL · AWS · Docker
+                    Java · TypeScript · Python · C · C++ · Go · SQL · React · SpringBoot · Next.js · Node.js · PostgreSQL · MongoDB · AWS · Docker · Linux · Git
                   </p>
                 </div>
 
@@ -205,6 +197,8 @@ export default function Portfolio() {
                     <div>Pink Toes - Childish Gambino</div>
                     <div>Relax and Run - Blood Orange</div>
                     <div>Gravity - John Mayer</div>
+                    <div>Race My Mind - Drake</div>
+                    <div>Nineteen - PinkPantheress</div>
                   </div>
                 </div>
               </div>
@@ -215,7 +209,7 @@ export default function Portfolio() {
               <h2 className="text-xs tracking-[0.3em] text-zinc-500 mb-6">CONTACT</h2>
               <div className="space-y-4">
                 <p className="text-sm text-zinc-400">
-                  dzhou05 (at) student.ubc (dot) ca
+                  danielzhou.nc (at) gmail (dot) com
                 </p>
                 <div className="flex gap-6 text-sm">
                   <a 
@@ -237,6 +231,12 @@ export default function Portfolio() {
                     <span className="text-xs">linkedin</span>
                   </a>
                 </div>
+                <Link 
+                  href="/blog" 
+                  className="block mt-6 text-xs text-zinc-700 hover:text-zinc-400 transition-colors italic"
+                >
+                  sometimes i write things too →
+                </Link>
               </div>
             </section>
           </div>
