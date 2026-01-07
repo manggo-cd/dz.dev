@@ -85,7 +85,7 @@ export default function BlogPost() {
               <div>
                 <h3 className="text-sm font-semibold text-zinc-300 mb-1">ChatGPT Atlas.</h3>
                 <p className="text-zinc-500 leading-relaxed">
-                  For the exclusive purpose of telling it to do all of my homework. I literally open my laptop on Fridays, then paste instructions for how to open canvas and do all of my online textbooks etc. and it literally just does it.
+                  For the exclusive purpose of bullying it into being my overcaffeinated TA. I open my laptop on Fridays, paste instructions for how to navigate Canvas and the online textbooks, and it keeps me on rails while I actually do the work.
                 </p>
               </div>
 
