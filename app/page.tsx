@@ -5,7 +5,7 @@ import { ThemeToggle } from "./components/ThemeToggle";
 export default function Portfolio() {
 
   const experiences = [
-    { role: "Incoming SDE Intern", company: "Global Relay", period: "Jan 2026" },
+    { role: "Software Engineer Intern", company: "Global Relay", period: "Jan 2026" },
     { role: "Backend Engineer Intern", company: "Suogogo Technologies", period: "Sept - Dec 2025" },
     { role: "Research Assistant", company: "UBC Visual Cognition Lab", period: "Sept 2025 - Present" },
     { role: "Software Developer", company: "Second Savour", period: "Jan - Apr 2025" },
@@ -22,19 +22,19 @@ export default function Portfolio() {
       title: "Poker Vision",
       description: "Computer vision pipeline with OpenCV and PyTorch for real-time playing card recognition. CNN-based classification with Monte Carlo simulation for optimal play evaluation.",
       tags: ["Python", "OpenCV", "PyTorch", "FastAPI", "CNN"],
-      link: "https://github.com",
+      link: "https://git@github.com:manggo-cd/PokerVision.git.com",
     },
     {
       title: "NES Emulator",
       description: "Nintendo Entertainment System emulator built in C++, compatible with Raspberry Pi. Emulates the 6502 microprocessor instruction set by replicating system architecture in software.",
       tags: ["C++", "Unreal Engine", "Systems"],
-      link: "https://github.com",
+      link: "https://https://github.com/manggo-cd/NES-Emulator.com",
     },
     {
       title: "Ransomware Sim",
       description: "Educational ransomware simulation for cybersecurity training and awareness.",
       tags: ["Python", "Cryptography"],
-      link: "https://github.com",
+      link: "https://https://github.com/manggo-cd/RansomwareSim.com",
     },
   ];
 

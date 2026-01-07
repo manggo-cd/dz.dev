@@ -11,14 +11,14 @@ export const projects: Project[] = [
     link: "https://github.com/manggo-cd/UBC-Exam-Scheduler",
   },
   {
-    title: "NexStep",
-    tags: ["Python", "TensorFlow", "Neo4j"],
-    link: "https://github.com",
+    title: "NextStep",
+    tags: ["Next.js", "Bun", "Maps"],
+    link: "https://github.com/manggo-cd/NextStep",
   },
   {
     title: "VitaSync",
-    tags: ["TypeScript", "Next.js", "WebSocket"],
-    link: "https://github.com",
+    tags: ["Java", "Swing", "JUnit"],
+    link: "https://github.com/manggo-cd/Vitasync",
   },
   {
     title: "Ransomware Sim",
