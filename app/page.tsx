@@ -5,10 +5,11 @@ import { ThemeToggle } from "./components/ThemeToggle";
 export default function Portfolio() {
 
   const experiences = [
-    { role: "Software Engineer Intern", company: "Global Relay", period: "Jan 2026" },
-    { role: "Backend Engineer Intern", company: "Suogogo Technologies", period: "Sept - Dec 2025" },
-    { role: "Research Assistant", company: "UBC Visual Cognition Lab", period: "Sept 2025 - Present" },
-    { role: "Software Developer", company: "Second Savour", period: "Jan - Apr 2025" },
+    { role: "Incoming SWE Intern", company: "Snowflake", period: "May 2026 - Sep 2026", url: "https://www.snowflake.com/en/"},
+    { role: "Software Engineer Intern", company: "Global Relay", period: "Jan 2026 - Apr 2026", url: "https://www.globalrelay.com/"},
+    { role: "Research Assistant", company: "UBC Visual Cognition Lab", period: "Sep 2025 - Apr 2026", url: "https://www.viscoglab.psych.ubc.ca/"},
+    { role: "Backend Engineer Intern", company: "Suogogo Technologies", period: "Aug 2025 - Nov 2025", url: "https://www.suogogo.com/"},
+    { role: "Software Developer", company: "Second Savour", period: "Jan 2025 - Sep 2025", url: null},
   ];
 
   const projects = [
@@ -19,22 +20,22 @@ export default function Portfolio() {
       link: "https://github.com/manggo-cd/UBC-Exam-Scheduler",
     },
     {
-      title: "Poker Vision",
-      description: "Computer vision pipeline with OpenCV and PyTorch for real-time playing card recognition. CNN-based classification with Monte Carlo simulation for optimal play evaluation.",
-      tags: ["Python", "OpenCV", "PyTorch", "FastAPI", "CNN"],
-      link: "https://git@github.com:manggo-cd/PokerVision.git.com",
+      title: "Trading Engine",
+      description: "High-Performance C++ trading engine that utilizes an Order Book and Price-Time Priority matching.",
+      tags: ["C++", "Go", "gRPC", "React"],
+      link: "https://github.com/manggo-cd/TradingEngine",
     },
     {
       title: "NES Emulator",
       description: "Nintendo Entertainment System emulator built in C++, compatible with Raspberry Pi. Emulates the 6502 microprocessor instruction set by replicating system architecture in software.",
       tags: ["C++", "Unreal Engine", "Systems"],
-      link: "https://https://github.com/manggo-cd/NES-Emulator.com",
+      link: "https://github.com/manggo-cd/NES-Emulator",
     },
     {
-      title: "Ransomware Sim",
+      title: "SHA-256 Cryptography",
       description: "Educational ransomware simulation for cybersecurity training and awareness.",
       tags: ["Python", "Cryptography"],
-      link: "https://https://github.com/manggo-cd/RansomwareSim.com",
+      link: "https://github.com/manggo-cd/RansomwareSim",
     },
   ];
 
@@ -78,8 +79,8 @@ export default function Portfolio() {
             <section>
               <h2 className="text-xs tracking-[0.3em] text-zinc-500 mb-6">WORK</h2>
               <div className="space-y-1">
-                {experiences.map((exp, i) => (
-                  <div key={i} className="group border-l-2 border-zinc-800 hover:border-zinc-600 transition-all">
+                {experiences.map((exp, i) => {
+                  const content = (
                     <div className="pl-6 py-4 hover:pl-7 transition-all">
                       <div className="flex justify-between items-start gap-4">
                         <div className="flex-1">
@@ -93,8 +94,24 @@ export default function Portfolio() {
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+
+                  return exp.url ? (
+                    <a
+                      key={i}
+                      href={exp.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block border-l-2 border-zinc-800 hover:border-zinc-600 transition-all cursor-pointer"
+                    >
+                      {content}
+                    </a>
+                  ) : (
+                    <div key={i} className="group border-l-2 border-zinc-800 hover:border-zinc-600 transition-all">
+                      {content}
+                    </div>
+                  );
+                })}
               </div>
             </section>
 
@@ -176,7 +193,7 @@ export default function Portfolio() {
                 <div>
                   <h3 className="text-xs text-zinc-600 mb-3">INTERESTS</h3>
                   <div className="flex flex-wrap gap-2">
-                    {["Basketball", "Cyberpunk", "Poker", "Snowboarding", "Gym", "Hiking", "Guitar"].map(interest => (
+                    {["Basketball", "Cyberpunk", "Poker", "Snowboarding", "Gym", "Hiking", "Guitar", "Music Production", "Food", "Outer Space"].map(interest => (
                       <span key={interest} className="px-3 py-1 border border-zinc-800 text-xs text-zinc-500">
                         {interest}
                       </span>
@@ -212,7 +229,7 @@ export default function Portfolio() {
                   href="mailto:danielzhou.nc@gmail.com"
                   className="text-sm text-zinc-400 hover:text-zinc-200 transition-colors"
                 >
-                  danielzhou.nc (at) gmail (dot) com
+                  danielzhou.nc [at] gmail [dot] com
                 </a>
                 <div className="flex gap-6 text-sm">
                   <a 
