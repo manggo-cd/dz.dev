@@ -5,10 +5,11 @@ import { ThemeToggle } from "./components/ThemeToggle";
 export default function Portfolio() {
 
   const experiences = [
-    { role: "Incoming SDE Intern", company: "Global Relay", period: "Jan 2026" },
-    { role: "Backend Engineer Intern", company: "Suogogo Technologies", period: "Sept - Dec 2025" },
-    { role: "Research Assistant", company: "UBC Visual Cognition Lab", period: "Sept 2025 - Present" },
-    { role: "Software Developer", company: "Second Savour", period: "Jan - Apr 2025" },
+    { role: "Incoming SWE Intern", company: "Snowflake", period: "May 2026 - Sep 2026"},
+    { role: "Software Engineer Intern", company: "Global Relay", period: "Jan 2026 - Apr 2026"},
+    { role: "Research Assistant", company: "UBC Visual Cognition Lab", period: "Sep 2025 - Apr 2026"},
+    { role: "Backend Engineer Intern", company: "Suogogo Technologies", period: "Aug 2025 - Nov 2025"},
+    { role: "Software Developer", company: "Second Savour", period: "Jan 2025 - Sep 2025"},
   ];
 
   const projects = [
@@ -19,22 +20,22 @@ export default function Portfolio() {
       link: "https://github.com/manggo-cd/UBC-Exam-Scheduler",
     },
     {
-      title: "Poker Vision",
-      description: "Computer vision pipeline with OpenCV and PyTorch for real-time playing card recognition. CNN-based classification with Monte Carlo simulation for optimal play evaluation.",
-      tags: ["Python", "OpenCV", "PyTorch", "FastAPI", "CNN"],
-      link: "https://github.com",
+      title: "Trading Engine",
+      description: "High-Performance C++ trading engine that utilizes an Order Book and Price-Time Priority matching.",
+      tags: ["C++", "Go", "gRPC", "React"],
+      link: "https://github.com/manggo-cd/TradingEngine",
     },
     {
       title: "NES Emulator",
       description: "Nintendo Entertainment System emulator built in C++, compatible with Raspberry Pi. Emulates the 6502 microprocessor instruction set by replicating system architecture in software.",
       tags: ["C++", "Unreal Engine", "Systems"],
-      link: "https://github.com",
+      link: "https://github.com/manggo-cd/NES-Emulator",
     },
     {
-      title: "Ransomware Sim",
+      title: "SHA-256 Cryptography",
       description: "Educational ransomware simulation for cybersecurity training and awareness.",
       tags: ["Python", "Cryptography"],
-      link: "https://github.com",
+      link: "https://github.com/manggo-cd/RansomwareSim",
     },
   ];
 
@@ -176,7 +177,7 @@ export default function Portfolio() {
                 <div>
                   <h3 className="text-xs text-zinc-600 mb-3">INTERESTS</h3>
                   <div className="flex flex-wrap gap-2">
-                    {["Basketball", "Cyberpunk", "Poker", "Snowboarding", "Gym", "Hiking", "Guitar"].map(interest => (
+                    {["Basketball", "Cyberpunk", "Poker", "Snowboarding", "Gym", "Hiking", "Guitar", "Music Production", "Food", "Outer Space"].map(interest => (
                       <span key={interest} className="px-3 py-1 border border-zinc-800 text-xs text-zinc-500">
                         {interest}
                       </span>
@@ -212,7 +213,7 @@ export default function Portfolio() {
                   href="mailto:danielzhou.nc@gmail.com"
                   className="text-sm text-zinc-400 hover:text-zinc-200 transition-colors"
                 >
-                  danielzhou.nc (at) gmail (dot) com
+                  danielzhou.nc [at] gmail [dot] com
                 </a>
                 <div className="flex gap-6 text-sm">
                   <a 
