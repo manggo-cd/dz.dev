@@ -5,11 +5,11 @@ import { ThemeToggle } from "./components/ThemeToggle";
 export default function Portfolio() {
 
   const experiences = [
-    { role: "Incoming SWE Intern", company: "Snowflake", period: "May 2026 - Sep 2026"},
-    { role: "Software Engineer Intern", company: "Global Relay", period: "Jan 2026 - Apr 2026"},
-    { role: "Research Assistant", company: "UBC Visual Cognition Lab", period: "Sep 2025 - Apr 2026"},
-    { role: "Backend Engineer Intern", company: "Suogogo Technologies", period: "Aug 2025 - Nov 2025"},
-    { role: "Software Developer", company: "Second Savour", period: "Jan 2025 - Sep 2025"},
+    { role: "Incoming SWE Intern", company: "Snowflake", period: "May 2026 - Sep 2026", url: "https://www.snowflake.com/en/"},
+    { role: "Software Engineer Intern", company: "Global Relay", period: "Jan 2026 - Apr 2026", url: "https://www.globalrelay.com/"},
+    { role: "Research Assistant", company: "UBC Visual Cognition Lab", period: "Sep 2025 - Apr 2026", url: "https://www.viscoglab.psych.ubc.ca/"},
+    { role: "Backend Engineer Intern", company: "Suogogo Technologies", period: "Aug 2025 - Nov 2025", url: "https://www.suogogo.com/"},
+    { role: "Software Developer", company: "Second Savour", period: "Jan 2025 - Sep 2025", url: null},
   ];
 
   const projects = [
@@ -79,8 +79,8 @@ export default function Portfolio() {
             <section>
               <h2 className="text-xs tracking-[0.3em] text-zinc-500 mb-6">WORK</h2>
               <div className="space-y-1">
-                {experiences.map((exp, i) => (
-                  <div key={i} className="group border-l-2 border-zinc-800 hover:border-zinc-600 transition-all">
+                {experiences.map((exp, i) => {
+                  const content = (
                     <div className="pl-6 py-4 hover:pl-7 transition-all">
                       <div className="flex justify-between items-start gap-4">
                         <div className="flex-1">
@@ -94,8 +94,24 @@ export default function Portfolio() {
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+
+                  return exp.url ? (
+                    <a
+                      key={i}
+                      href={exp.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block border-l-2 border-zinc-800 hover:border-zinc-600 transition-all cursor-pointer"
+                    >
+                      {content}
+                    </a>
+                  ) : (
+                    <div key={i} className="group border-l-2 border-zinc-800 hover:border-zinc-600 transition-all">
+                      {content}
+                    </div>
+                  );
+                })}
               </div>
             </section>
 
