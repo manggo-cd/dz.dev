@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>daniel zhou · 周</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --font-disp:"Space Grotesk",system-ui,-apple-system,sans-serif;
+    --font-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+    --maxw:600px; --ease:cubic-bezier(.2,.6,.2,1);
+  }
+  html[data-theme="dark"]{
+    --bg:#070a12; --ink:#eef2fb; --text:#9aa5bb; --muted:#5a6580; --faint:#2c3450;
+    --accent:#66ccff; --accent-soft:rgba(102,204,255,.5);
+    --chrome:linear-gradient(176deg,#ffffff 0%,#cfd8ea 34%,#7c8bb0 56%,#eef3ff 74%,#9fb0d6 100%);
+    --glow:radial-gradient(900px 520px at 80% -10%,rgba(58,109,255,.18),transparent 60%),radial-gradient(700px 480px at 6% 110%,rgba(102,204,255,.09),transparent 55%);
+    --scan:.5;
+  }
+  html[data-theme="light"]{
+    --bg:#e9edf2; --ink:#0f141c; --text:#454e5c; --muted:#8a94a3; --faint:#c3cad4;
+    --accent:#33477a; --accent-soft:rgba(91,118,176,.5);
+    --chrome:linear-gradient(176deg,#5a6784 0%,#a6b0c6 22%,#2c3757 46%,#cdd6e6 62%,#4a577c 100%);
+    --glow:radial-gradient(1000px 600px at 50% -12%,#ffffff,transparent 60%);
+    --scan:0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--text);font-family:var(--font-mono);
+    font-size:13px;line-height:1.7;letter-spacing:0;-webkit-font-smoothing:antialiased;
+    min-height:100vh;position:relative;overflow-x:hidden;transition:background .5s var(--ease),color .5s var(--ease);
+  }
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:var(--glow);transition:background .5s var(--ease)}
+  body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:var(--scan);
+    background:repeating-linear-gradient(to bottom,rgba(255,255,255,.02) 0 1px,transparent 1px 3px);mix-blend-mode:overlay;transition:opacity .5s}
+
+  /* giant chinese watermark motif */
+  .watermark{position:fixed;right:-4vw;bottom:-8vh;z-index:0;font-family:var(--font-disp);
+    font-weight:500;font-size:52vh;line-height:.8;color:var(--ink);opacity:.035;pointer-events:none;user-select:none;transition:opacity .5s}
+
+  /* rotated spine label (nod to PS2 case spine) */
+  .spine{position:fixed;left:22px;top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;
+    font-family:var(--font-mono);font-size:10.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--faint);z-index:3;
+    display:flex;align-items:center;gap:20px;transition:color .5s}
+  .spine .cn{font-family:var(--font-disp);letter-spacing:.2em;font-size:12px;color:var(--muted)}
+
+  .stage{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:0 24px;min-height:100vh;display:flex;flex-direction:column}
+
+  /* NAV */
+  nav{display:flex;justify-content:space-between;align-items:center;padding:28px 0 0;font-family:var(--font-mono);font-size:11px;letter-spacing:.03em}
+  .mark{font-family:var(--font-disp);font-size:26px;font-weight:500;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent;cursor:pointer;line-height:1;filter:drop-shadow(0 1px 0 rgba(255,255,255,.25))}
+  .navright{display:flex;align-items:center;gap:18px}
+  .links{display:flex;gap:16px}
+  .links a{color:var(--muted);text-decoration:none;cursor:pointer;transition:color .2s var(--ease);position:relative}
+  .links a:hover{color:var(--ink)}
+  .links a.active{color:var(--accent)}
+  .links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--accent);box-shadow:0 0 6px var(--accent-soft)}
+  .toggle{background:none;border:1px solid var(--faint);color:var(--muted);font-family:var(--font-disp);font-size:13px;
+    width:26px;height:26px;border-radius:50%;cursor:pointer;display:grid;place-items:center;transition:.2s var(--ease)}
+  .toggle:hover{color:var(--ink);border-color:var(--muted)}
+
+  /* PAGES */
+  main{flex:1;display:flex;flex-direction:column}
+  .view{display:none}
+  .view.on{display:flex;flex-direction:column;flex:1;animation:fade .45s var(--ease) both}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  /* HOME — stripped, poster-like */
+  #home{justify-content:center;padding:40px 0 90px}
+  .bigmark{font-family:var(--font-disp);font-weight:500;font-size:150px;line-height:.9;background:var(--chrome);
+    -webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 1px rgba(255,255,255,.2));margin-bottom:22px}
+  #home h1{font-family:var(--font-disp);font-weight:400;font-size:22px;letter-spacing:-.01em;color:var(--ink);margin-bottom:2px}
+  #home .pin{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:.06em}
+  .socials{display:flex;gap:16px;margin-top:30px}
+  .socials a{color:var(--muted);transition:color .2s var(--ease),transform .2s var(--ease);line-height:0}
+  .socials a:hover{color:var(--accent);transform:translateY(-2px)}
+  .socials svg{width:19px;height:19px;display:block}
+
+  /* INNER PAGES */
+  .view.inner{padding:88px 0 60px}
+  .phead{font-family:var(--font-disp);font-weight:500;font-size:15px;color:var(--muted);letter-spacing:.02em;margin-bottom:44px;display:flex;align-items:baseline;gap:10px}
+  .phead .en{color:var(--ink)}
+  .phead .cn{color:var(--muted);font-size:13px}
+
+  /* EXPERIENCE — box-free, hanging metadata, ghost index */
+  .xp{position:relative;padding:0 0 30px 0;transition:.3s var(--ease)}
+  .xp .idx{position:absolute;left:-6px;top:-14px;font-family:var(--font-disp);font-weight:600;font-size:52px;color:var(--ink);opacity:.05;transition:opacity .3s}
+  .xp:hover .idx{opacity:.11;color:var(--accent)}
+  .xp h3{font-family:var(--font-disp);font-weight:500;font-size:18px;color:var(--ink);letter-spacing:-.01em;position:relative}
+  .xp .meta{font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-top:3px;letter-spacing:.02em}
+  .xp .meta b{color:var(--text);font-weight:500}
+
+  /* PROJECTS — editorial index, reveal on hover, no boxes */
+  .proj{display:block;text-decoration:none;position:relative;padding:18px 0;transition:.3s var(--ease)}
+  .proj .top{display:flex;align-items:baseline;gap:14px}
+  .proj .n{font-family:var(--font-mono);font-size:11px;color:var(--faint);width:22px;flex:none;transition:color .3s}
+  .proj h3{font-family:var(--font-disp);font-weight:500;font-size:21px;color:var(--ink);letter-spacing:-.01em;transition:transform .3s var(--ease)}
+  .proj .arw{margin-left:auto;color:var(--faint);font-family:var(--font-mono);transition:.3s}
+  .proj .body{max-height:0;overflow:hidden;opacity:0;transition:max-height .35s var(--ease),opacity .35s var(--ease),margin .35s var(--ease);padding-left:36px}
+  .proj:hover .body{max-height:80px;opacity:1;margin-top:8px}
+  .proj:hover h3{transform:translateX(6px)}
+  .proj:hover .n{color:var(--accent)}
+  .proj:hover .arw{color:var(--accent);transform:translate(2px,-2px)}
+  .proj .body p{font-size:12px;color:var(--muted);line-height:1.6;max-width:52ch}
+  .proj .body .tags{font-family:var(--font-mono);font-size:10px;color:var(--faint);margin-top:6px;letter-spacing:.04em}
+
+  /* BLOG */
+  .post{display:flex;align-items:baseline;gap:20px;text-decoration:none;padding:15px 0;transition:.25s var(--ease)}
+  .post:hover{transform:translateX(6px)}
+  .post .date{font-family:var(--font-mono);font-size:11px;color:var(--muted);width:66px;flex:none}
+  .post h3{font-family:var(--font-disp);font-weight:400;font-size:17px;color:var(--ink);transition:color .2s}
+  .post:hover h3{color:var(--accent)}
+
+  footer{font-family:var(--font-mono);font-size:10px;color:var(--faint);letter-spacing:.08em;padding:24px 0 34px;transition:color .5s}
+
+  .note{position:fixed;bottom:14px;right:16px;z-index:9;font-family:var(--font-mono);font-size:9.5px;color:var(--faint)}
+
+  @media(max-width:640px){.spine{display:none}.bigmark{font-size:110px}.watermark{font-size:40vh}}
+</style>
+</head>
+<body>
+  <div class="watermark">周</div>
+  <div class="spine"><span>daniel zhou</span><span class="cn" id="spineCn">首页</span></div>
+
+  <div class="stage">
+    <nav>
+      <div class="mark" onclick="go('home')">周</div>
+      <div class="navright">
+        <div class="links">
+          <a class="active" data-nav="home" onclick="go('home')">home</a>
+          <a data-nav="experience" onclick="go('experience')">experience</a>
+          <a data-nav="projects" onclick="go('projects')">projects</a>
+          <a data-nav="blog" onclick="go('blog')">blog</a>
+        </div>
+        <button class="toggle" onclick="toggleTheme()" id="tg">☾</button>
+      </div>
+    </nav>
+
+    <main>
+      <!-- HOME -->
+      <section class="view on" id="home">
+        <div class="bigmark">周</div>
+        <h1>daniel zhou</h1>
+        <div class="pin">vancouver, bc</div>
+        <div class="socials">
+          <a href="#" aria-label="linkedin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H20.6v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H12.9z"/></svg></a>
+          <a href="#" aria-label="github"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.2-3.37-1.2-.46-1.18-1.11-1.5-1.11-1.5-.9-.64.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 015 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.6.69.49A10.03 10.03 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
+          <a href="#" aria-label="email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></a>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="view inner" id="experience">
+        <div class="phead"><span class="en">experience</span><span class="cn">经历</span></div>
+        <div class="xp"><span class="idx">01</span><h3>Software Engineer Intern</h3><div class="meta"><b>Global Relay</b> — jan 2026</div></div>
+        <div class="xp"><span class="idx">02</span><h3>Backend Engineer Intern</h3><div class="meta"><b>Suogogo Technologies</b> — sep–dec 2025</div></div>
+        <div class="xp"><span class="idx">03</span><h3>Research Assistant</h3><div class="meta"><b>UBC Visual Cognition Lab</b> — sep 2025 – now</div></div>
+        <div class="xp"><span class="idx">04</span><h3>Software Developer</h3><div class="meta"><b>Second Savour</b> — jan–apr 2025</div></div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="view inner" id="projects">
+        <div class="phead"><span class="en">projects</span><span class="cn">项目</span></div>
+        <a class="proj" href="#"><div class="top"><span class="n">01</span><h3>UBC Scheduler</h3><span class="arw">↗</span></div><div class="body"><p>exam scheduling app serving 22,000+ ubc students with automated calendar export.</p><div class="tags">JAVA · SPRINGBOOT · POSTGRESQL · REACT</div></div></a>
+        <a class="proj" href="#"><div class="top"><span class="n">02</span><h3>Poker Vision</h3><span class="arw">↗</span></div><div class="body"><p>computer-vision pipeline with opencv + pytorch for real-time card recognition and monte carlo play evaluation.</p><div class="tags">PYTHON · OPENCV · PYTORCH · CNN</div></div></a>
+        <a class="proj" href="#"><div class="top"><span class="n">03</span><h3>NES Emulator</h3><span class="arw">↗</span></div><div class="body"><p>6502 microprocessor emulator in c++, compatible with raspberry pi.</p><div class="tags">C++ · SYSTEMS</div></div></a>
+        <a class="proj" href="#"><div class="top"><span class="n">04</span><h3>Ransomware Sim</h3><span class="arw">↗</span></div><div class="body"><p>educational ransomware simulation for cybersecurity training and awareness.</p><div class="tags">PYTHON · CRYPTOGRAPHY</div></div></a>
+      </section>
+
+      <!-- BLOG -->
+      <section class="view inner" id="blog">
+        <div class="phead"><span class="en">blog</span><span class="cn">日志</span></div>
+        <a class="post" href="#"><span class="date">2026.03</span><h3>a list of good tools</h3></a>
+        <a class="post" href="#"><span class="date">2026.01</span><h3>milliseconds matter</h3></a>
+        <a class="post" href="#"><span class="date">2025.11</span><h3>about &amp; contact</h3></a>
+      </section>
+    </main>
+
+    <footer>© 2026 daniel zhou · 周</footer>
+  </div>
+
+  <div class="note">v2 · space grotesk + mono · 周 motif · light/dark toggle · spa transitions</div>
+
+<script>
+  const cn={home:'首页',experience:'经历',projects:'项目',blog:'日志'};
+  function go(id){
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+    const el=document.getElementById(id);
+    // retrigger animation
+    void el.offsetWidth; el.classList.add('on');
+    document.querySelectorAll('.links a').forEach(a=>a.classList.toggle('active',a.dataset.nav===id));
+    document.getElementById('spineCn').textContent=cn[id];
+    window.scrollTo(0,0);
+  }
+  function toggleTheme(){
+    const h=document.documentElement;
+    const d=h.getAttribute('data-theme')==='dark';
+    h.setAttribute('data-theme',d?'light':'dark');
+    document.getElementById('tg').textContent=d?'☀':'☾';
+  }
+</script>
+</body>
+</html>

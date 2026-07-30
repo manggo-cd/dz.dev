@@ -1,16 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <defs>
-    <linearGradient id="moon" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#e2e8f0"/>
-      <stop offset="100%" stop-color="#cbd5e1"/>
-    </linearGradient>
-  </defs>
-  
-  <!-- Crescent moon using circle subtraction -->
-  <mask id="crescentMask">
-    <circle cx="16" cy="16" r="12" fill="white"/>
-    <circle cx="22" cy="12" r="10" fill="black"/>
-  </mask>
-  
-  <circle cx="16" cy="16" r="12" fill="url(#moon)" mask="url(#crescentMask)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="22" fill="#070a12"/>
+  <text x="50" y="54" text-anchor="middle" dominant-baseline="central"
+        font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif"
+        font-size="66" font-weight="600" fill="#66ccff">周</text>
 </svg>

@@ -1,120 +1,172 @@
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { ThemeToggle } from "../../components/ThemeToggle";
+import type { Metadata } from "next";
+import { BlogShell } from "../../components/BlogShell";
 
-export default function BlogPost() {
+export const metadata: Metadata = {
+  title: "About & Contact — Daniel Zhou",
+};
+
+export default function AboutAndContact() {
   return (
-    <div className="min-h-screen font-mono" style={{ backgroundColor: "var(--bg-primary)", color: "var(--text-primary)" }}>
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 backdrop-blur-sm border-b" style={{ backgroundColor: "var(--bg-primary)", borderColor: "var(--border-color)", opacity: 0.95 }}>
-        <div className="max-w-3xl mx-auto px-8 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-4">
-            <ThemeToggle />
-            <Link href="/blog" className="flex items-center gap-2 text-zinc-400 hover:text-zinc-200 transition-colors text-xs">
-              <ArrowLeft className="w-4 h-4" />
-              <span>back to blog</span>
-            </Link>
-          </div>
-        </div>
-      </nav>
+    <BlogShell backHref="/blog" backLabel="blog">
+      <article className="article">
+        <div className="art-date">Dec 13, 2025 · updated Jul 29, 2026</div>
+        <h1>About &amp; Contact</h1>
+        <div className="rule" />
 
-      <article className="max-w-3xl mx-auto px-8 pt-28 pb-16">
-        <header className="mb-12">
-          <p className="text-xs text-zinc-600 mb-2">2025-12-13</p>
-          <h1 className="text-2xl font-bold mb-4 tracking-tight underline">About & Contact</h1>
-        </header>
+        <p className="art-note">Updated today: refreshed a few thoughts and added a section on giving back.</p>
 
-        <div className="space-y-8 text-sm">
-          {/* Warning */}
-          <p className="text-zinc-500 italic">TW: J*bs and Empl*yment</p>
-
-          {/* Contact */}
-          <p className="text-zinc-400">
-            Contact: danielzhou.nc #at# gmail |dot| com
-          </p>
-
-          {/* In Short */}
-          <section>
-            <h2 className="text-base font-bold mb-4 text-zinc-300">In short:</h2>
-            
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-sm font-semibold mb-2 text-zinc-400">Professionally:</h3>
-                <ul className="space-y-2 text-zinc-500 list-disc list-inside">
-                  <li>Interned a few times across backend, fullstack, and research</li>
-                  <li>Worked at startups during school</li>
-                  <li>Strongly believe there is no domain that is more interesting than another. Although I tend to gravitate towards systems-ish things</li>
-                  <li>Work on unfinished side projects all the time. Though I might just finish one soon!</li>
-                  <li>Doing a CS + Masters in Management dual degree at UBC. The business classes are... interesting</li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-semibold mb-2 text-zinc-400">Personally:</h3>
-                <p className="text-zinc-600 italic">Coming soon...</p>
-              </div>
-            </div>
-          </section>
-
-          {/* Favorites */}
-          <section>
-            <h2 className="text-base font-bold mb-4 text-zinc-300">Favorite</h2>
-            
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-sm font-semibold mb-2 text-zinc-400">Songs (In no order):</h3>
-                <p className="text-zinc-600 italic">Coming soon...</p>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-semibold mb-2 text-zinc-400">Foods:</h3>
-                <p className="text-zinc-600 italic">Coming soon...</p>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-semibold mb-2 text-zinc-400">Quote:</h3>
-                <p className="text-zinc-500 italic">&quot;the [drug] addict is just as tantalized by the spoon as he is the [drug]&quot; - Some Random Twitter User</p>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-semibold mb-2 text-zinc-400">Movie / Book / Show:</h3>
-                <p className="text-zinc-500">Pusher / Brothers Karamazov / Tatami Galaxy</p>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-semibold mb-2 text-zinc-400">Languages:</h3>
-                <p className="text-zinc-500">R*st & C++ (specifically Variadic templates)</p>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-semibold mb-2 text-zinc-400">Animal:</h3>
-                <p className="text-zinc-500">Duck (undisputable)</p>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-semibold mb-2 text-zinc-400">Thing to hate on:</h3>
-                <p className="text-zinc-500">Twitter tech larpers</p>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-semibold mb-2 text-zinc-400">Game:</h3>
-                <p className="text-zinc-500">League of Legends :P</p>
-              </div>
-            </div>
-          </section>
-        </div>
-      </article>
-
-      {/* Footer */}
-      <footer className="py-8 border-t" style={{ borderColor: "var(--border-color)" }}>
-        <p className="text-xs text-zinc-600 text-center">
-          © 2025 Daniel Zhou · Vancouver, BC
+        <p>
+          <em>TW: J*bs and Empl*yment</em>
         </p>
-      </footer>
-    </div>
+
+        <p>
+          Contact:{" "}
+          <a className="inline" href="mailto:danielzhou.nc@gmail.com">
+            danielzhou.nc #at# gmail |dot| com
+          </a>
+        </p>
+
+        <h2>In short:</h2>
+
+        <h3>Professionally:</h3>
+        <ul>
+          <li>Interned a few times across backend, fullstack, and research</li>
+          <li>Worked at startups during school</li>
+          <li>
+            Strongly believe there is no domain that is more interesting than another. Although I
+            tend to gravitate towards systems-ish things
+          </li>
+          <li>
+            Work on unfinished side projects all the time. Though I might just finish one soon!
+          </li>
+          <li>
+            Doing a CS + Masters in Management dual degree at UBC. The business classes are...
+            interesting
+          </li>
+        </ul>
+
+        <h3>Personally:</h3>
+        <ul>
+          <li>I grew up in Vancouver, and I feel privileged and blessed to call it home.</li>
+          <li>
+            Vancouver is incredibly diverse, in both what it offers and what it lacks. Growing up in
+            an abundance of nature and difference, then travelling to places with a lack thereof,
+            I&apos;ve come to appreciate all walks of life and what it&apos;s like to live in both a
+            big and a small world. A lot of my opinions come from those experiences.
+          </li>
+          <li>
+            I love the outdoors. I&apos;ve played sports my whole life: soccer, swimming, football,
+            badminton, snowboarding, skating, and hiking, with basketball and lifting being the
+            mainstays. Many of them I&apos;ve played in an organized capacity.
+          </li>
+          <li>
+            Music has always been an integral part of my life. I grew up on piano, performing up to
+            ARCT levels; nowadays I play electric guitar and make digital music. A big enjoyer of all
+            tunes. You can{" "}
+            <a
+              className="inline"
+              href="https://open.spotify.com/user/6919w5dthkvt6xplcxs26wzt6?si=649a82b2e7d5482f"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              find me on Spotify
+            </a>
+            , and I&apos;m always open to{" "}
+            <a className="inline" href="/suggest">
+              recommendations
+            </a>
+            .
+          </li>
+          <li>I speak four languages.</li>
+          <li>
+            I studied CS seeking career fulfillment. I won&apos;t pretend the money doesn&apos;t
+            matter, and honestly it drives a lot of my decisions, but a part of me knows I&apos;ll be
+            more content doing work that carries some sense of societal contribution. That&apos;s a
+            hard place to get to, and it might take years, but maybe somewhere down the line I&apos;ll
+            get there. In the meantime, if I can help even just a few people out there in my lifetime,
+            that&apos;ll be good enough for me.
+          </li>
+        </ul>
+
+        <h2>Giving back:</h2>
+        <p>
+          One constant throughout my life has been helping the people around me. It&apos;s a core
+          part of who I am, and it&apos;s shaped a lot of the above.
+        </p>
+        <ul>
+          <li>
+            I founded the{" "}
+            <a
+              className="inline"
+              href="https://peermentor.ca/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Peer Mentor Association
+            </a>{" "}
+            when I was younger, during COVID. Honestly, I started it because I was really lonely back
+            then, and I wanted to make a real change in the world. With what I knew at the time, I
+            slowly built it up: it began as manual registration, and I taught myself how to build my
+            first website with no formal CS education. All I knew was that I wanted to make a
+            difference, and slowly over time, as my skills and confidence grew, so did my initiative.
+            It&apos;s since grown to involve over 700 people. Along the way we&apos;ve raised
+            truckloads of supplies for the Lytton wildfires (partnered with a local radio station),
+            put together care packages for the children and staff at BC Children&apos;s Hospital
+            during COVID, run donation drives for institutions like a drug rehabilitation center in
+            Vancouver, and hosted summer camps.
+          </li>
+          <li>
+            I spent years volunteering at ECBC in Burnaby, the church I grew up at and where so many
+            of my formative years were spent. I spent summers helping run summer camps for hundreds of
+            children, served weekly with Sunday school, helped with seasonal performances, and more.
+          </li>
+          <li>I was president of the service club at my high school, among other things.</li>
+        </ul>
+
+        <h2>Favorite</h2>
+
+        <h3>Songs (In no order):</h3>
+        <ul>
+          <li>Perfect — Smashing Pumpkins</li>
+          <li>The Resistance — Drake</li>
+          <li>Running in the Night — FM-84</li>
+          <li>Entombed — Deftones</li>
+          <li>Landslide — Fleetwood Mac</li>
+          <li>The Blonde — TV Girl</li>
+          <li>KAPITOL DENIM — LUCKI</li>
+          <li>Clouds — Pastel Ghost</li>
+        </ul>
+
+        <h3>Foods:</h3>
+        <ul>
+          <li>Chinese (obviously, no bias)</li>
+          <li>Italian</li>
+          <li>Lowkey everything — I love all cuisines</li>
+        </ul>
+
+        <h3>Quote:</h3>
+        <p>
+          <em>
+            &quot;the [drug] addict is just as tantalized by the spoon as he is the [drug]&quot;
+          </em>{" "}
+          - Some Random Twitter User
+        </p>
+
+        <h3>Movie / Book / Show:</h3>
+        <p>Pusher / Brothers Karamazov / Tatami Galaxy</p>
+
+        <h3>Languages:</h3>
+        <p>R*st &amp; C++ (specifically Variadic templates)</p>
+
+        <h3>Animal:</h3>
+        <p>Penguin</p>
+
+        <h3>Thing to hate on:</h3>
+        <p>Twitter tech larpers</p>
+
+        <h3>Game:</h3>
+        <p>League of Legends :P</p>
+      </article>
+    </BlogShell>
   );
 }
-
-
-
-

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>daniel zhou · 周</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --font-disp:"Space Grotesk",system-ui,sans-serif;
+    --font-mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+    --maxw:840px; --ease:cubic-bezier(.2,.6,.2,1);
+  }
+  html[data-theme="dark"]{
+    --bg:#070a12; --ink:#eef2fb; --text:#96a1b8; --muted:#5a6580; --faint:#28304a;
+    --accent:#66ccff; --gridline:rgba(102,180,255,.16);
+    --chrome:linear-gradient(176deg,#ffffff 0%,#cfd8ea 34%,#7c8bb0 56%,#eef3ff 74%,#9fb0d6 100%);
+    --glow:radial-gradient(1100px 600px at 82% 8%,rgba(58,109,255,.20),transparent 58%),radial-gradient(700px 520px at 50% 118%,rgba(102,204,255,.12),transparent 60%);
+    --tint:linear-gradient(120deg,#1b3fb0,#7ad0ff); --tint-mode:color; --girl-op:.85;
+    --scan:.45; --panel:#0d1220; --panel2:#111a2e;
+  }
+  html[data-theme="light"]{
+    --bg:#e7ebf1; --ink:#101620; --text:#4a5361; --muted:#8a94a3; --faint:#c7cdd7;
+    --accent:#3a5da8; --gridline:rgba(70,100,150,.14);
+    --chrome:linear-gradient(176deg,#5a6784 0%,#a6b0c6 22%,#2c3757 46%,#cdd6e6 62%,#4a577c 100%);
+    --glow:radial-gradient(1100px 640px at 50% -8%,#ffffff,transparent 60%),radial-gradient(800px 500px at 85% 20%,rgba(150,180,220,.5),transparent 60%);
+    --tint:linear-gradient(120deg,#8ea6c8,#dfe8f2); --tint-mode:soft-light; --girl-op:.5;
+    --scan:0; --panel:#f3f6fa; --panel2:#eaeef4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:13px;line-height:1.7;
+    -webkit-font-smoothing:antialiased;min-height:100vh;position:relative;overflow-x:hidden}
+
+  /* ---------- STATIC CYBER BACKGROUND ---------- */
+  .bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+  .bg .glow{position:absolute;inset:0;background:var(--glow)}
+  .bg .grid{position:absolute;left:-20%;right:-20%;bottom:0;height:40vh;opacity:.6;
+    background-image:linear-gradient(var(--gridline) 1px,transparent 1px),linear-gradient(90deg,var(--gridline) 1px,transparent 1px);
+    background-size:46px 46px;transform:perspective(320px) rotateX(64deg);transform-origin:bottom;
+    -webkit-mask-image:linear-gradient(to top,#000 5%,transparent 80%);mask-image:linear-gradient(to top,#000 5%,transparent 80%)}
+  .bg .glyphs span{position:absolute;font-family:var(--font-disp);font-weight:600;color:var(--ink);opacity:.04;user-select:none}
+  .bg .g1{top:14%;left:6%;font-size:120px}
+  .bg .g2{top:60%;left:12%;font-size:78px}
+  .bg .g3{top:24%;right:8%;font-size:64px}
+  .grain{position:fixed;inset:0;z-index:4;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .scan{position:fixed;inset:0;z-index:4;pointer-events:none;opacity:var(--scan);mix-blend-mode:overlay;
+    background:repeating-linear-gradient(to bottom,rgba(255,255,255,.03) 0 1px,transparent 1px 3px)}
+
+  /* ---------- STAGE ---------- */
+  .stage{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:0 32px;min-height:100vh;display:flex;flex-direction:column}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:26px 0 0;font-family:var(--font-mono);font-size:11px;letter-spacing:.04em}
+  .mark{font-family:var(--font-disp);font-size:24px;font-weight:500;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent;cursor:pointer;line-height:1}
+  .navright{display:flex;align-items:center;gap:18px}
+  .links{display:flex;gap:16px}
+  .links a{color:var(--muted);text-decoration:none;cursor:pointer}
+  .links a:hover{color:var(--ink)}
+  .links a.active{color:var(--accent)}
+  .toggle{background:none;border:1px solid var(--faint);color:var(--muted);font-size:12px;width:26px;height:26px;border-radius:50%;cursor:pointer;display:grid;place-items:center}
+  .toggle:hover{color:var(--ink);border-color:var(--muted)}
+
+  main{flex:1;display:flex;flex-direction:column}
+  .view{display:none}
+  .view.on{display:flex;flex-direction:column;flex:1}
+
+  /* ---------- HOME ---------- */
+  #home{justify-content:center;padding:60px 0 100px}
+  .hero-girl{position:fixed;top:0;right:0;width:min(52vw,640px);height:100vh;z-index:0;overflow:hidden;pointer-events:none;
+    -webkit-mask-image:linear-gradient(to left,#000 18%,transparent 86%);mask-image:linear-gradient(to left,#000 18%,transparent 86%)}
+  .hero-girl img{width:100%;height:100%;object-fit:cover;object-position:60% 28%;filter:grayscale(.35) contrast(1.05) brightness(.92);opacity:var(--girl-op)}
+  .hero-girl::before{content:"";position:absolute;inset:0;background:var(--tint);mix-blend-mode:var(--tint-mode)}
+  .hero-girl::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 4%,transparent 46%)}
+  .home-in{position:relative;z-index:2;max-width:440px}
+  .home-in h1{font-family:var(--font-disp);font-weight:500;font-size:52px;line-height:1;letter-spacing:-.02em;color:var(--ink);margin-bottom:12px}
+  .home-in .pin{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase}
+  .home-in .ps{font-family:var(--font-disp);color:var(--accent);letter-spacing:.5em;font-size:13px;margin:22px 0 0;opacity:.8}
+  .socials{display:flex;gap:16px;margin-top:26px}
+  .socials a{color:var(--muted);line-height:0}
+  .socials a:hover{color:var(--accent)}
+  .socials svg{width:19px;height:19px;display:block}
+
+  /* ---------- INNER ---------- */
+  .view.inner{padding:80px 0 60px}
+  .phead{font-family:var(--font-disp);font-weight:500;font-size:30px;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px}
+  .psub{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;margin-bottom:48px}
+
+  /* EXPERIENCE (static editorial) */
+  .xp{position:relative;padding:0 0 34px 46px}
+  .xp .idx{position:absolute;left:0;top:0;font-family:var(--font-mono);font-size:11px;color:var(--accent);opacity:.7}
+  .xp h3{font-family:var(--font-disp);font-weight:500;font-size:18px;color:var(--ink);letter-spacing:-.01em}
+  .xp .meta{font-family:var(--font-mono);font-size:11px;color:var(--muted);margin-top:3px}
+  .xp .meta b{color:var(--text);font-weight:500}
+
+  /* PROJECTS (Nicole-style image + text rows, static) */
+  .proj{display:flex;gap:26px;align-items:flex-start;padding:0 0 44px}
+  .thumb{flex:0 0 46%;aspect-ratio:16/11;border-radius:8px;overflow:hidden;position:relative;
+    background:linear-gradient(160deg,var(--panel),var(--panel2));border:1px solid var(--faint);box-shadow:0 2px 10px rgba(0,0,0,.18)}
+  .thumb .bar{height:22px;display:flex;align-items:center;gap:5px;padding:0 9px;border-bottom:1px solid var(--faint);background:var(--panel2)}
+  .thumb .bar i{width:7px;height:7px;border-radius:50%;background:var(--muted);opacity:.5}
+  .thumb .scr{padding:12px 13px;font-family:var(--font-mono);font-size:8.5px;line-height:1.7;color:var(--muted)}
+  .thumb .scr b{color:var(--accent)}
+  .thumb .wm{position:absolute;right:10px;bottom:6px;font-family:var(--font-disp);font-weight:600;font-size:20px;color:var(--ink);opacity:.06}
+  .pinfo{flex:1;min-width:0}
+  .pinfo .pt{display:flex;align-items:center;gap:9px}
+  .pinfo h3{font-family:var(--font-disp);font-weight:500;font-size:18px;color:var(--ink);letter-spacing:-.01em}
+  .pinfo .pt a{color:var(--muted);line-height:0}
+  .pinfo .pt a:hover{color:var(--accent)}
+  .pinfo .pt svg{width:15px;height:15px;display:block}
+  .pinfo .date{font-family:var(--font-mono);font-size:11px;color:var(--muted);margin:5px 0 9px}
+  .pinfo p{font-size:12.5px;color:var(--text);line-height:1.65;max-width:44ch}
+  .pinfo .tech{font-family:var(--font-mono);font-size:10.5px;color:var(--muted);margin-top:10px;line-height:1.6}
+
+  /* BLOG */
+  .post{display:flex;gap:22px;align-items:baseline;padding:0 0 20px;text-decoration:none}
+  .post .date{font-family:var(--font-mono);font-size:11px;color:var(--muted);width:70px;flex:none}
+  .post h3{font-family:var(--font-disp);font-weight:400;font-size:17px;color:var(--ink)}
+  .post:hover h3{color:var(--accent)}
+
+  footer{font-family:var(--font-mono);font-size:10px;color:var(--faint);letter-spacing:.1em;padding:26px 0 34px}
+  .note{position:fixed;bottom:12px;right:16px;z-index:9;font-family:var(--font-mono);font-size:9px;color:var(--faint)}
+
+  @media(max-width:720px){
+    .hero-girl{width:100vw;opacity:.5}
+    .home-in h1{font-size:40px}
+    .proj{flex-direction:column}.thumb{flex-basis:auto;width:100%}
+  }
+</style>
+</head>
+<body>
+  <!-- background -->
+  <div class="bg">
+    <div class="glow"></div>
+    <div class="grid"></div>
+    <div class="glyphs"><span class="g1">△</span><span class="g2">○</span><span class="g3">✕</span></div>
+  </div>
+  <div class="scan"></div>
+  <div class="grain"></div>
+
+  <div class="stage">
+    <nav>
+      <div class="mark" onclick="go('home')">周</div>
+      <div class="navright">
+        <div class="links">
+          <a class="active" data-nav="home" onclick="go('home')">home</a>
+          <a data-nav="experience" onclick="go('experience')">experience</a>
+          <a data-nav="projects" onclick="go('projects')">projects</a>
+          <a data-nav="blog" onclick="go('blog')">blog</a>
+        </div>
+        <button class="toggle" id="tg" onclick="toggleTheme()">☾</button>
+      </div>
+    </nav>
+
+    <main>
+      <!-- HOME -->
+      <section class="view on" id="home">
+        <div class="hero-girl"><img src="assets/phase.png" alt=""></div>
+        <div class="home-in">
+          <h1>daniel<br>zhou</h1>
+          <div class="pin">vancouver · bc</div>
+          <div class="ps">△ ○ ✕ □</div>
+          <div class="socials">
+            <a href="#" aria-label="linkedin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21H20.6v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21H12.9z"/></svg></a>
+            <a href="#" aria-label="github"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.2-3.37-1.2-.46-1.18-1.11-1.5-1.11-1.5-.9-.64.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 015 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.6.69.49A10.03 10.03 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
+            <a href="#" aria-label="email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="view inner" id="experience">
+        <div class="phead">experience</div>
+        <div class="psub">经历 · 04</div>
+        <div class="xp"><span class="idx">01</span><h3>Software Engineer Intern</h3><div class="meta"><b>Global Relay</b> · jan 2026</div></div>
+        <div class="xp"><span class="idx">02</span><h3>Backend Engineer Intern</h3><div class="meta"><b>Suogogo Technologies</b> · sep–dec 2025</div></div>
+        <div class="xp"><span class="idx">03</span><h3>Research Assistant</h3><div class="meta"><b>UBC Visual Cognition Lab</b> · sep 2025 – now</div></div>
+        <div class="xp"><span class="idx">04</span><h3>Software Developer</h3><div class="meta"><b>Second Savour</b> · jan–apr 2025</div></div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="view inner" id="projects">
+        <div class="phead">projects</div>
+        <div class="psub">项目 · 04</div>
+
+        <div class="proj">
+          <div class="thumb"><div class="bar"><i></i><i></i><i></i></div><div class="scr"><b>$</b> ./schedule --export<br>parsing 22,041 enrollments…<br>conflicts: 0<br><b>ok</b> → daniel.ics written</div><div class="wm">△</div></div>
+          <div class="pinfo">
+            <div class="pt"><h3>UBC Scheduler</h3>
+              <a href="#" aria-label="github"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.7c-2.78.55-3.37-1.34-3.37-1.34-.46-1.15-1.11-1.46-1.11-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.28.1-2.66 0 0 .84-.27 2.75 1.02a9.3 9.3 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.66.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.93.68 1.87l-.01 2.77c0 .27.18.59.69.49A10.03 10.03 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
+            </div>
+            <div class="date">2026</div>
+            <p>exam-scheduling app serving 22,000+ ubc students with automated calendar export.</p>
+            <div class="tech">java · springboot · postgresql · react · tailwind</div>
+          </div>
+        </div>
+
+        <div class="proj">
+          <div class="thumb"><div class="bar"><i></i><i></i><i></i></div><div class="scr"><b>detect</b> ♠A ♥K ♦Q<br>conf 0.98 · 0.97 · 0.95<br>equity: <b>72.4%</b><br>action → raise</div><div class="wm">○</div></div>
+          <div class="pinfo">
+            <div class="pt"><h3>Poker Vision</h3>
+              <a href="#" aria-label="github"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.7c-2.78.55-3.37-1.34-3.37-1.34-.46-1.15-1.11-1.46-1.11-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.28.1-2.66 0 0 .84-.27 2.75 1.02a9.3 9.3 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.66.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.93.68 1.87l-.01 2.77c0 .27.18.59.69.49A10.03 10.03 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
+            </div>
+            <div class="date">2025</div>
+            <p>computer-vision pipeline with opencv + pytorch for real-time card recognition, with monte carlo simulation for optimal play evaluation.</p>
+            <div class="tech">python · opencv · pytorch · fastapi · cnn</div>
+          </div>
+        </div>
+
+        <div class="proj">
+          <div class="thumb"><div class="bar"><i></i><i></i><i></i></div><div class="scr"><b>6502</b> @ 1.79MHz<br>PC $C000 A:$00 X:$00<br>ppu frame 0x1f<br><b>run</b> ▸ super mario bros</div><div class="wm">✕</div></div>
+          <div class="pinfo">
+            <div class="pt"><h3>NES Emulator</h3>
+              <a href="#" aria-label="github"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.7c-2.78.55-3.37-1.34-3.37-1.34-.46-1.15-1.11-1.46-1.11-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.28.1-2.66 0 0 .84-.27 2.75 1.02a9.3 9.3 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.66.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.93.68 1.87l-.01 2.77c0 .27.18.59.69.49A10.03 10.03 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
+            </div>
+            <div class="date">2024</div>
+            <p>nintendo entertainment system emulator in c++, compatible with raspberry pi — emulates the 6502 instruction set in software.</p>
+            <div class="tech">c++ · systems · raspberry pi</div>
+          </div>
+        </div>
+
+        <div class="proj">
+          <div class="thumb"><div class="bar"><i></i><i></i><i></i></div><div class="scr"><b>[sim]</b> aes-256 keygen…<br>files staged: 128<br><b>demo</b> encrypt ▸ decrypt<br>education only</div><div class="wm">□</div></div>
+          <div class="pinfo">
+            <div class="pt"><h3>Ransomware Sim</h3>
+              <a href="#" aria-label="github"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.7c-2.78.55-3.37-1.34-3.37-1.34-.46-1.15-1.11-1.46-1.11-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.28.1-2.66 0 0 .84-.27 2.75 1.02a9.3 9.3 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.66.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.93.68 1.87l-.01 2.77c0 .27.18.59.69.49A10.03 10.03 0 0022 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
+            </div>
+            <div class="date">2024</div>
+            <p>educational ransomware simulation for cybersecurity training and awareness.</p>
+            <div class="tech">python · cryptography</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BLOG -->
+      <section class="view inner" id="blog">
+        <div class="phead">blog</div>
+        <div class="psub">日志 · 03</div>
+        <a class="post" href="#"><span class="date">2026.03</span><h3>a list of good tools</h3></a>
+        <a class="post" href="#"><span class="date">2026.01</span><h3>milliseconds matter</h3></a>
+        <a class="post" href="#"><span class="date">2025.11</span><h3>about &amp; contact</h3></a>
+      </section>
+    </main>
+
+    <footer>© 2026 daniel zhou · vancouver</footer>
+  </div>
+
+  <div class="note">v3 · static · cyber bg · ps motif · light/dark</div>
+
+<script>
+  function go(id){
+    document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id===id));
+    document.querySelectorAll('.links a').forEach(a=>a.classList.toggle('active',a.dataset.nav===id));
+    window.scrollTo(0,0);
+  }
+  function toggleTheme(){
+    const h=document.documentElement, d=h.getAttribute('data-theme')==='dark';
+    h.setAttribute('data-theme',d?'light':'dark');
+    document.getElementById('tg').textContent=d?'☀':'☾';
+  }
+</script>
+</body>
+</html>
