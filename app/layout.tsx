@@ -4,10 +4,21 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Daniel Zhou",
-  description: "Daniel Zhou — computer science student @ UBC, software engineer.",
+  description: "Daniel Zhou's personal website and blog.",
   icons: {
     icon: "/icon.svg",
     apple: "/apple-icon.svg",
+  },
+  openGraph: {
+    title: "Daniel Zhou",
+    description: "Daniel Zhou's personal website and blog.",
+    type: "website",
+    siteName: "Daniel Zhou",
+  },
+  twitter: {
+    card: "summary",
+    title: "Daniel Zhou",
+    description: "Daniel Zhou's personal website and blog.",
   },
 };
 
