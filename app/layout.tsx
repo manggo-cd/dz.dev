@@ -14,11 +14,20 @@ export const metadata: Metadata = {
     description: "Daniel Zhou's personal website and blog.",
     type: "website",
     siteName: "Daniel Zhou",
+    images: [
+      {
+        url: "/og.png",
+        width: 512,
+        height: 512,
+        alt: "Daniel Zhou",
+      },
+    ],
   },
   twitter: {
     card: "summary",
     title: "Daniel Zhou",
     description: "Daniel Zhou's personal website and blog.",
+    images: ["/og.png"],
   },
 };
 
