@@ -141,7 +141,7 @@ export default function AboutAndContact() {
         <ul>
           <li>Chinese (obviously, no bias)</li>
           <li>Italian</li>
-          <li>Lowkey everything — I love all cuisines</li>
+          <li>Malaysian</li>
         </ul>
 
         <h3>Quote:</h3>
@@ -153,7 +153,7 @@ export default function AboutAndContact() {
         </p>
 
         <h3>Movie / Book / Show:</h3>
-        <p>Pusher / Brothers Karamazov / Tatami Galaxy</p>
+        <p>Casino / Brothers Karamazov / Severance</p>
 
         <h3>Languages:</h3>
         <p>R*st &amp; C++ (specifically Variadic templates)</p>
